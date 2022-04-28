@@ -9,9 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import API.RetrofitBuilder;
+import API.RetrofitImages;
+import API.plantApi;
+import API.plantData;
+import API.plantImages;
 import API.resultsData;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PlantPage extends Activity {
     Context context = PlantPage.this;
@@ -51,72 +64,57 @@ public class PlantPage extends Activity {
         PlantFlowerColor = findViewById(R.id.myText9);
 
         // image
-//        RequestOptions requestOptions = new RequestOptions();
-//        requestOptions.placeholder(R.drawable.dandelion);
-//        requestOptions.error(R.drawable.dandelion);
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.dandelion);
+        requestOptions.error(R.drawable.dandelion);
 //
-//        Glide.with(PlantPage.this)
-//                .load("https://plants.sc.egov.usda.gov/ImageLibrary/original/acba3_001_php.jpg")
-//                .apply(requestOptions)
-//                .into(mainImage);
-        //
+        Glide.with(PlantPage.this)
+                .load("https://plants.sc.egov.usda.gov/ImageLibrary/original/acba3_001_php.jpg")
+                .apply(requestOptions)
+                .into(mainImage);
+
 
         plantName = "testing";
         getData();
-        setData();
+
 
     }
     private void getData(){
-        if(getIntent().hasExtra("data1") && getIntent().hasExtra("data2")){
 
-            plantName = getIntent().getStringExtra("data1");
+            plantName = getIntent().getStringExtra("dataName");
 
             // UNCHECK
             desc = getIntent().getStringExtra("data2");
+            System.out.println("dumb");
+            Retrofit retrofit = RetrofitBuilder.getInstance();
+            plantApi myPlantAPI = retrofit.create(plantApi.class);
+            Call<plantData> list = myPlantAPI.getplantData(plantName);
+            list.enqueue(new Callback<plantData>() {
+                @Override
+                public void onResponse(Call<plantData> call, Response<plantData> response) {
+                    System.out.println("test");
+                    plantData plants = response.body();
+                    plantType = plants.getGrowthHabit();
+                    plantState = plants.getState();
+                    plantShadeT = plants.getShadeTolerance();
+                    plantEdible = plants.getPalatableHuman();
+                    plantBloomP = plants.getBloomPeriod();
+                    plantPHMinInt = plants.getpH_Minimum();
+                    plantPHMin = String.valueOf(plants.getpH_Minimum());
+                    plantPHMaxInt = plants.getpH_Maximum();
+                    plantPHMax = String.valueOf(plants.getpH_Maximum());
+                    plantFlowerColor = plants.getFlowerColor();
+                    plantSymbol = plants.getFlowerColor();
+                    setData();
+                }
 
-//            plantType = "hi";
-//            plantState = "hi";
-//            plantShadeT = "hi";
-//            plantEdible = "hi";
-//            plantBloomP = "hi";
-//            plantPHMinInt = getIntent().getDoubleExtra("dataPhMin",0);
-//            plantPHMin = "hi";
-//            plantPHMaxInt = getIntent().getDoubleExtra("dataPhMax",0);
-//            plantPHMax = "hi";
-//            plantFlowerColor = "hi";
-//            plantSymbol = "hi";
+                @Override
+                public void onFailure(Call<plantData> call, Throwable t) {
+                    System.out.println("fail");
+                    System.out.println(t.getMessage());
+                }
+            });
 
-            plantType = getIntent().getStringExtra("dataType");
-            plantState = getIntent().getStringExtra("dataState");
-            plantShadeT = getIntent().getStringExtra("dataShadeT");
-            plantEdible = getIntent().getStringExtra("dataEdible");
-            plantBloomP = getIntent().getStringExtra("dataBloomP");
-            plantPHMinInt = getIntent().getDoubleExtra("dataPhMin",0);
-            plantPHMin = String.valueOf(plantPHMinInt);
-            plantPHMaxInt = getIntent().getDoubleExtra("dataPhMax",0);
-            plantPHMax = String.valueOf(plantPHMaxInt);
-            plantFlowerColor = getIntent().getStringExtra("dataFlowerColor");
-            plantSymbol = getIntent().getStringExtra("dataSymbol");
-
-        }
-        else if(getIntent().hasExtra("dataName")){
-            plantName = getIntent().getStringExtra("dataName");
-            plantType = getIntent().getStringExtra("dataType");
-            plantState = getIntent().getStringExtra("dataState");
-            plantShadeT = getIntent().getStringExtra("dataShadeT");
-            plantEdible = getIntent().getStringExtra("dataEdible");
-            plantBloomP = getIntent().getStringExtra("dataBloomP");
-            plantPHMinInt = getIntent().getDoubleExtra("dataPhMin",0);
-            plantPHMin = String.valueOf(plantPHMinInt);
-            plantPHMaxInt = getIntent().getDoubleExtra("dataPhMax",0);
-            plantPHMax = String.valueOf(plantPHMaxInt);
-            plantFlowerColor = getIntent().getStringExtra("dataFlowerColor");
-            plantSymbol = getIntent().getStringExtra("dataSymbol");
-
-        }
-        else{
-            plantName = "test";
-        }
 
     }
     private void setData(){
@@ -137,15 +135,43 @@ public class PlantPage extends Activity {
 
 
         // for images
-//        RequestOptions requestOptions = new RequestOptions();
-//        requestOptions.placeholder(R.drawable.image_loading_logo);
-//        requestOptions.error(R.drawable.image_loading_logo);
-//        String sym = plantSymbol.toLowerCase();
-//        Glide.with(PlantPage.this)
-//                .load("https://plants.sc.egov.usda.gov/ImageLibrary/original/"+sym+"_002_php.jpg")
-//                .apply(requestOptions)
-//                .into(mainImage);
+
+//        Retrofit retrofit = RetrofitImages.getInstance();
+//        plantApi myPlantAPI = retrofit.create(plantApi.class);
+//        System.out.println(plantName);
+//        Call<plantImages> list = myPlantAPI.getplantImages("query","json","pageimages",plantName, "500");
+//        list.enqueue(new Callback<plantImages>() {
+//            @Override
+//            public void onResponse(Call<plantImages> call, Response<plantImages> response) {
+//                System.out.println("------");
+//                System.out.println(response.body().toString());
+//                System.out.println(response.raw().toString());
+//                RequestOptions requestOptions = new RequestOptions();
+//                requestOptions.placeholder(R.drawable.image_loading_logo);
+//                requestOptions.error(R.drawable.image_loading_logo);
+//
+//                Glide.with(PlantPage.this)
+//                        .load(response.body().getSource())
+//                        .apply(requestOptions)
+//                        .into(mainImage);
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<plantImages> call, Throwable t) {
+//
+//            }
+//        });
+//
+
+
+
+
     }
 
 
 }
+
+
+

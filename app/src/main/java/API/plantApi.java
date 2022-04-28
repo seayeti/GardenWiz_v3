@@ -47,12 +47,26 @@ public interface plantApi {
                                           @Query("DroughtTolerance")String DroughtTolerance,
                                           @Query("PalatableHuman")String PalatableHuman);
 
-
+    @GET("Plantdb/searchPlantsMin.php")
+    Call<List<plantData>> getsearchPlantsMin(@Query("CommonName") String CommonName,
+                                          @Query("GrowthHabit") String GrowthHabit,
+                                          @Query("season") String season,
+                                          @Query("BloomPeriod") String BloomPeriod,
+                                          @Query("State") String State,
+                                          @Query("CommercialAvailability") String CommercialAvailability,
+                                          @Query("DroughtTolerance")String DroughtTolerance,
+                                          @Query("PalatableHuman")String PalatableHuman);
     @GET("runs/read.php")
     Call<List<runsData>> getrunsData();
 
     @GET("results/searchRun.php")
     Call<List<resultsData>> getresultsData(@Query("runID")int runID);
 
+    @GET("api.php")
+    Call<plantImages> getplantImages(@Query("action") String action,
+                                     @Query("format") String format,
+                                     @Query("prop") String prop,
+                                     @Query("titles") String titles,
+                                     @Query("pitthumbsize")String pitthumbsize);
 
 }

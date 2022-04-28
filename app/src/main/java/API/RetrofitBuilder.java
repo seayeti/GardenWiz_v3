@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitBuilder {
 
 
-    private static final String BASE_URL = "http://api.nohles.dev/api/";
+    private static final String BASE_URL = "https://api.nohles.dev/api/";
     private static Retrofit instance;
     private RetrofitBuilder(){}
 

@@ -7,6 +7,14 @@ public class runsData {
     private int timeToEnd;
     private String runName;
     private String MacAddress;
+    private String state;
+    private String season;
+    private String bloom;
+    private String type;
+    private String drought;
+    private String comm;
+    private String edible;
+
 
     public runsData(int i, int i1, String nameInput, String s2) {
         this.setUserID(i);
@@ -65,6 +73,62 @@ public class runsData {
         MacAddress = macAddress;
     }
 
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public String getBloom() {
+        return bloom;
+    }
+
+    public void setBloom(String bloom) {
+        this.bloom = bloom;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDrought() {
+        return drought;
+    }
+
+    public void setDrought(String drought) {
+        this.drought = drought;
+    }
+
+    public String getComm() {
+        return comm;
+    }
+
+    public void setComm(String comm) {
+        this.comm = comm;
+    }
+
+    public String getEdible() {
+        return edible;
+    }
+
+    public void setEdible(String edible) {
+        this.edible = edible;
+    }
 
 
 
