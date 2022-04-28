@@ -18,7 +18,7 @@ import API.plantData;
 import API.resultsData;
 import API.runsData;
 
-public class MyResultsAdapter extends RecyclerView.Adapter<com.example.myapplication.MyResultsAdapter.MyViewHolder> {
+public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz_v3.MyResultsAdapter.MyViewHolder> {
 
     String data1[], data2[];
     int images[];
@@ -63,11 +63,11 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.myapplica
 
 
 
-        return new com.example.myapplication.MyResultsAdapter.MyViewHolder(view);
+        return new com.example.gardenwiz_v3.MyResultsAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull com.example.myapplication.MyResultsAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull com.example.gardenwiz_v3.MyResultsAdapter.MyViewHolder holder, int position) {
         holder.myText1.setText(results.get(position).getCommonName());
 
 

@@ -18,7 +18,7 @@ import API.plantData;
 import API.resultsData;
 import API.runsData;
 
-public class MyPlantAdapter extends RecyclerView.Adapter<com.example.myapplication.MyPlantAdapter.MyViewHolder> {
+public class MyPlantAdapter extends RecyclerView.Adapter<com.example.gardenwiz_v3.MyPlantAdapter.MyViewHolder> {
 
         String data1[], data2[];
         int images[];
@@ -40,7 +40,7 @@ public class MyPlantAdapter extends RecyclerView.Adapter<com.example.myapplicati
 
         @NonNull
         @Override
-        public com.example.myapplication.MyPlantAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public com.example.gardenwiz_v3.MyPlantAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(context);
             View view = inflater.inflate(R.layout.my_row, parent, false);
 
@@ -48,11 +48,11 @@ public class MyPlantAdapter extends RecyclerView.Adapter<com.example.myapplicati
 
 
 
-            return new com.example.myapplication.MyPlantAdapter.MyViewHolder(view);
+            return new com.example.gardenwiz_v3.MyPlantAdapter.MyViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull com.example.myapplication.MyPlantAdapter.MyViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull com.example.gardenwiz_v3.MyPlantAdapter.MyViewHolder holder, int position) {
             holder.myText1.setText(results.get(position).getCommonName());
 
 
