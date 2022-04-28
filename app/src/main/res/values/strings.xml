@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="run_pi">Run GardenWiz</string>
+    <string name="search_by_plants">Search by plants</string>
+    <string name="topphoto">topPhoto</string>
+    <string name="search_plants">Search PLANTS</string>
+    <string name="history">History</string>
+    <string name="weather_wiz">GardenWiz</string>
+    <string name="activate_sensors">Activate Sensors</string>
+    <string name="quick_run">Quick Run</string>
+    <string name="adv_run">Filter Run</string>
+    <string name="ifnotconnected">ifnotconnected</string>
+    <string name="name_of_run">name_of_run</string>
+    <string name="duration">duration</string>
+    <string name="advanced_run">Filter Run</string>
+    <string name="confirm">confirm</string>
+
+    <string name="weatherwiz_status">Status</string>
+    <string name="go">Go</string>
+    <string name="cancel">Cancel</string>
+    <string name="name_your_run">Name Your Run:</string>
+    <string name="season">Season</string>
+    <string name="type">Type</string>
+    <string name="edible">Edible</string>
+    <string name="native_species">Native Species</string>
+    <string name="enter_name_of_run">Enter Name of Run:</string>
+    <string name="state">State</string>
+    <string name="commercial_availability">Commercial Availability</string>
+    <string name="drought_tolerance">Drought Tolerance</string>
+    <string name="native_to_state">Native to State</string>
+    <string name="name_run">Name Run</string>
+    <string name="plant_type">Plant Type</string>
+    <string name="bloom_period">Bloom Period</string>
+    <string name="enter_a_name">enter a name</string>
+    <string name="enter_initials_ca">enter initials \'CA\'</string>
+    <string name="plant_name">Plant Name</string>
+    <string name="enter_plant_name">.       Enter plant name</string>
+    <string name="FR_description">First, name the run with something memorable. For example, "Living Room Corner". Then select the filters applicable for your run, and tap go!</string>
+    <string name="indoors">Indoors</string>
+    <string name="Search_description">Enter the parameters to search the PLANTS Database. To not consider a filter, leave it blank.</string>
+    <string name="QR_description">Name the run with something memorable. For example, "Living Room Corner Sensor Check". Then press Go!</string>
+    <string name="durationList">Duration: </string>
+    <string name="gardenwiz_data">GardenWiz Data</string>
+    <string name="temperatureList">Temperature:</string>
+    <string name="moistureList">Moisture:</string>
+    <string name="humidList">Humidity: </string>
+    <string name="rainList">Rain: </string>
+    <string name="phList">PH:</string>
+    <string name="lightList">Light:</string>
+    <string name="view_all_res">View All Results</string>
+    <string-array name="seasonDrop">
+        <item></item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Fall</item>
+        <item>Winter</item>
+    </string-array>
+    <string-array name="bloomDrop">
+        <item></item>
+        <item>Spring</item>
+        <item>Early Spring</item>
+        <item>Mid Spring</item>
+        <item>Late Spring</item>
+        <item>Summer</item>
+        <item>Early Summer</item>
+        <item>Mid Summer</item>
+        <item>Late Summer</item>
+        <item>Fall</item>
+        <item>Early Fall</item>
+        <item>Mid Fall</item>
+        <item>Late Fall</item>
+        <item>Winter</item>
+        <item>Early Winter</item>
+        <item>Mid Winter</item>
+        <item>Late Winter</item>
+    </string-array>
+    <string-array name="durationDrop">
+        <item></item>
+        <item>5s</item>
+        <item>1hr</item>
+        <item>2hr</item>
+        <item>6hr</item>
+        <item>12hr</item>
+        <item>24hr</item>
+    </string-array>
+    <string-array name="typeDrop">
+        <item>  </item>
+        <item>Tree</item>
+        <item>Flower</item>
+        <item>Grass</item>
+        <item>Fruit</item>
+        <item>Nuts</item>
+        <item>Shrub</item>
+        <item>Herb</item>
+    </string-array>
+
+    <string-array name="YN">
+        <item>  </item>
+        <item>"Yes"</item>
+        <item>"No"</item>
+    </string-array>
+   <string-array name="commDrop">
+       <item>  </item>
+        <item>"Routinely Available"</item>
+        <item>"Contracting Only"</item>
+        <item>"Field Collections Only"</item>
+        <item>"No Known Source"</item>
+   </string-array>
+
+   <string-array name="StateDrop">
+        <item>  </item>
+        <item>"AL"</item>
+        <item>"AK"</item>
+        <item>"AZ"</item>
+        <item>"AR"</item>
+        <item>"CA"</item>
+        <item>"CO"</item>
+        <item>"CT"</item>
+        <item>"DE"</item>
+        <item>"FL"</item>
+        <item>"GA"</item>
+        <item>"HI"</item>
+        <item>"ID"</item>
+        <item>"IL"</item>
+        <item>"IN"</item>
+        <item>"IA"</item>
+        <item>"KS"</item>
+        <item>"KY"</item>
+        <item>"LA"</item>
+        <item>"ME"</item>
+        <item>"MD"</item>
+        <item>"MA"</item>
+        <item>"MI"</item>
+        <item>"MN"</item>
+        <item>"MS"</item>
+        <item>"MO"</item>
+        <item>"MT"</item>
+        <item>"NE"</item>
+        <item>"NV"</item>
+        <item>"NH"</item>
+        <item>"NJ"</item>
+        <item>"NM"</item>
+        <item>"NY"</item>
+        <item>"NC"</item>
+        <item>"ND"</item>
+        <item>"OH"</item>
+        <item>"OK"</item>
+        <item>"OR"</item>
+        <item>"PA"</item>
+        <item>"RI"</item>
+        <item>"SC"</item>
+        <item>"SD"</item>
+        <item>"TN"</item>
+        <item>"TX"</item>
+        <item>"UT"</item>
+        <item>"VT"</item>
+        <item>"VA"</item>
+        <item>"WA"</item>
+        <item>"WV"</item>
+        <item>"WI"</item>
+        <item>"WY"</item>
+    </string-array>
+
+    <string-array name="droughtDrop">
+        <item>  </item>
+        <item>"None"</item>
+        <item>"Low"</item>
+        <item>"Medium"</item>
+        <item>"High"</item>
+    </string-array>
+
+</resources>
