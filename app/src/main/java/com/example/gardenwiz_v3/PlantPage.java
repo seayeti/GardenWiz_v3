@@ -12,14 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import API.PlantImages;
 import API.RetrofitBuilder;
 import API.RetrofitImages;
 import API.plantApi;
 import API.plantData;
-import API.plantImages;
 import API.resultsData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +34,7 @@ public class PlantPage extends Activity {
     List<resultsData> results;
 
     String plantName, desc="";
-    String plantType, plantState,plantShadeT,plantEdible,plantBloomP,plantFlowerColor, plantSymbol;
+    String plantType, plantState,plantShadeT,plantEdible,plantBloomP,plantFlowerColor, plantSymbol, plantSciName;
     double plantPHMinInt,plantPHMaxInt;
     String plantPHMin,plantPHMax;
 
@@ -95,6 +94,7 @@ public class PlantPage extends Activity {
                     System.out.println("test");
                     plantData plants = response.body();
                     plantType = plants.getGrowthHabit();
+                    plantSciName = plants.getScientificName();
                     plantState = plants.getState();
                     plantShadeT = plants.getShadeTolerance();
                     plantEdible = plants.getPalatableHuman();
@@ -136,33 +136,39 @@ public class PlantPage extends Activity {
 
         // for images
 
-//        Retrofit retrofit = RetrofitImages.getInstance();
-//        plantApi myPlantAPI = retrofit.create(plantApi.class);
-//        System.out.println(plantName);
-//        Call<plantImages> list = myPlantAPI.getplantImages("query","json","pageimages",plantName, "500");
-//        list.enqueue(new Callback<plantImages>() {
-//            @Override
-//            public void onResponse(Call<plantImages> call, Response<plantImages> response) {
-//                System.out.println("------");
-//                System.out.println(response.body().toString());
-//                System.out.println(response.raw().toString());
-//                RequestOptions requestOptions = new RequestOptions();
-//                requestOptions.placeholder(R.drawable.image_loading_logo);
-//                requestOptions.error(R.drawable.image_loading_logo);
+        Retrofit retrofit = RetrofitImages.getInstance();
+        plantApi myPlantAPI = retrofit.create(plantApi.class);
+        System.out.println(plantSciName);
+        Call<PlantImages> list = myPlantAPI.getplantImages("query","json","pageimages",plantSciName, "2","500");
+        list.enqueue(new Callback<PlantImages>() {
+            @Override
+            public void onResponse(Call<PlantImages> call, Response<PlantImages> response) {
+                System.out.println("------");
+
+                PlantImages plants;
+                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
+                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getWidth());
+                System.out.println(response.raw().toString());
+
+
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.placeholder(R.drawable.image_loading_logo);
+                requestOptions.error(R.drawable.image_loading_logo);
+                if(response.body().getQuery().getPages().get(0).getThumbnail().getSource() != null) {
+                    Glide.with(PlantPage.this)
+                            .load(response.body().getQuery().getPages().get(0).getThumbnail().getSource())
+                            .apply(requestOptions)
+                            .into(mainImage);
 //
-//                Glide.with(PlantPage.this)
-//                        .load(response.body().getSource())
-//                        .apply(requestOptions)
-//                        .into(mainImage);
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<plantImages> call, Throwable t) {
-//
-//            }
-//        });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<PlantImages> call, Throwable t) {
+
+            }
+        });
 //
 
 

@@ -63,10 +63,11 @@ public interface plantApi {
     Call<List<resultsData>> getresultsData(@Query("runID")int runID);
 
     @GET("api.php")
-    Call<plantImages> getplantImages(@Query("action") String action,
+    Call<PlantImages> getplantImages(@Query("action") String action,
                                      @Query("format") String format,
                                      @Query("prop") String prop,
                                      @Query("titles") String titles,
-                                     @Query("pitthumbsize")String pitthumbsize);
+                                     @Query("formatversion") String formatversion,
+                                     @Query("pithumbsize")String pithumbsize);
 
 }
