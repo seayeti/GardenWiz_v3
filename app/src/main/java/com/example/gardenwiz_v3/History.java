@@ -48,7 +48,7 @@ public class History extends AppCompatActivity {
                     betyID[i] = String.valueOf(response3.body().get(i).getRunID());
                     System.out.println(response3.body().get(i).getRunID());
                 }
-                int[] images = null;
+                String[] images = null;
                 MyAdapter myAdapter = new MyAdapter(context, plantNames, betyID, images);
                 recyclerView.setAdapter(myAdapter);
                 //plantList.add();

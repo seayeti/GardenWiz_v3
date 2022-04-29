@@ -21,6 +21,9 @@ public class Page implements Parcelable
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("missing")
+    @Expose
+    private String missing;
     @SerializedName("thumbnail")
     @Expose
     private Thumbnail thumbnail;
@@ -48,6 +51,7 @@ public class Page implements Parcelable
         this.pageid = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.ns = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.title = ((String) in.readValue((String.class.getClassLoader())));
+        this.missing = ((String) in.readValue((String.class.getClassLoader())));
         this.thumbnail = ((Thumbnail) in.readValue((Thumbnail.class.getClassLoader())));
         this.pageimage = ((String) in.readValue((String.class.getClassLoader())));
     }
@@ -78,6 +82,13 @@ public class Page implements Parcelable
     public void setTitle(String title) {
         this.title = title;
     }
+    public String getMissing() {
+        return missing;
+    }
+
+    public void setMissing(String missing) {
+        this.missing = missing;
+    }
 
     public Thumbnail getThumbnail() {
         return thumbnail;
@@ -99,6 +110,7 @@ public class Page implements Parcelable
         dest.writeValue(pageid);
         dest.writeValue(ns);
         dest.writeValue(title);
+        dest.writeValue(missing);
         dest.writeValue(thumbnail);
         dest.writeValue(pageimage);
     }

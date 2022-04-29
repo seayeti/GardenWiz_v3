@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import API.plantData;
 import API.resultsData;
 import API.runsData;
@@ -19,7 +22,7 @@ import API.runsData;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     String data1[], data2[];
-    int images[];
+    String images[];
     Context context;
     plantData plants;
     runsData runs;
@@ -31,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     String phMin[],phMax[];
 
 
-    public MyAdapter(Context ct, String s1[], String s2[], int img[],plantData plants,  String typ[], String bloomP[], String stat[], String edib[], String shadeT[], String flowerClr[], String sym[]){
+    public MyAdapter(Context ct, String s1[], String s2[], String img[],plantData plants,  String typ[], String bloomP[], String stat[], String edib[], String shadeT[], String flowerClr[], String sym[]){
         context = ct;
         data1 = s1;
         data2 = s2;
@@ -50,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     }
-    public MyAdapter(Context ct, String s1[], String s2[], int img[]){
+    public MyAdapter(Context ct, String s1[], String s2[], String img[]){
         context = ct;
         data1 = s1;
         data2 = s2;
@@ -58,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     }
-    public MyAdapter(Context ct, String s1[], String s2[], int img[], runsData runs ){
+    public MyAdapter(Context ct, String s1[], String s2[], String img[], runsData runs ){
         context = ct;
         data1 = s1;
         data2 = s2;
@@ -66,7 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     }
-    public MyAdapter(Context ct, String s1[], String s2[], int img[],resultsData results){
+    public MyAdapter(Context ct, String s1[], String s2[], String img[],resultsData results){
         context = ct;
         data1 = s1;
         data2 = s2;
@@ -93,6 +96,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myText1.setText(data1[position]);
         holder.myText2.setText(data2[position]);
+
+
+
         //holder.myImage.setImageResource(images[position]);
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,15 @@ public class resultsData {
     private int runID;
     private static int betydbspeciesid;
     private String CommonName;
+    private String ScientificName;
+
+    public String getScientificName() {
+        return ScientificName;
+    }
+
+    public void setScientificName(String scientificName) {
+        ScientificName = scientificName;
+    }
 
 
     public int getResultsID() {

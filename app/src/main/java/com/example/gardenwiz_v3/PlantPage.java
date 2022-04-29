@@ -146,22 +146,25 @@ public class PlantPage extends Activity {
                 System.out.println("------");
 
                 PlantImages plants;
-                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
-                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getWidth());
-                System.out.println(response.raw().toString());
+                if(response.body().getQuery().getPages().get(0).getMissing() == null) {
+                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
+                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getWidth());
+                    System.out.println(response.raw().toString());
 
 
-                RequestOptions requestOptions = new RequestOptions();
-                requestOptions.placeholder(R.drawable.image_loading_logo);
-                requestOptions.error(R.drawable.image_loading_logo);
-                if(response.body().getQuery().getPages().get(0).getThumbnail().getSource() != null) {
-                    Glide.with(PlantPage.this)
-                            .load(response.body().getQuery().getPages().get(0).getThumbnail().getSource())
-                            .apply(requestOptions)
-                            .into(mainImage);
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.placeholder(R.drawable.image_loading_logo);
+                    requestOptions.error(R.drawable.image_loading_logo);
+                    if (response.body().getQuery().getPages().get(0).getThumbnail().getSource() != null) {
+                        Glide.with(PlantPage.this)
+                                .load(response.body().getQuery().getPages().get(0).getThumbnail().getSource())
+                                .apply(requestOptions)
+                                .into(mainImage);
 //
+                    }else {
+                        mainImage.setImageResource(R.drawable.dandelion);
+                    }
                 }
-
             }
 
             @Override
