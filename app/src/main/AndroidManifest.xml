@@ -40,6 +40,9 @@
             android:name=".PlantPage"
             android:exported="true" />
         <activity
+            android:name="bluetooth.Devices"
+            android:exported="true" />
+        <activity
             android:name=".LoginPage"
             android:exported="true">
             <intent-filter>

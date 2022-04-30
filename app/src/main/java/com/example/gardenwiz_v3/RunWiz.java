@@ -316,6 +316,9 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
     private void isRunning() {
     }
+    //todo
+    //on simple list click go to plant page.
+
 
     private void getPlants(String messages[]) {
         int runID = Integer.parseInt(messages[1]);
