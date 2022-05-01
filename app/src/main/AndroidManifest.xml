@@ -43,8 +43,12 @@
             android:name="bluetooth.Devices"
             android:exported="true" />
         <activity
+            android:name=".RegistrationPage"
+            android:exported="true" />
+        <activity
             android:name=".LoginPage"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

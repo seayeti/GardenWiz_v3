@@ -108,6 +108,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText Password;
     private TextView Info;
     private Button Login;
+    private Button Register;
     private int counter = 5;
 
     @Override
@@ -119,6 +120,8 @@ public class LoginPage extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.etPassword);
         Info = (TextView) findViewById(R.id.tvInfo);
         Login = (Button) findViewById(R.id.btnLogin);
+        Register = (Button) findViewById(R.id.btnReg);
+
 
         Info.setText("No of attempts remaining: 5");
         Name.setText("Admin");
@@ -127,6 +130,14 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 validate(Name.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, RegistrationPage.class);
+                startActivity(intent);
             }
         });
 

@@ -11,6 +11,13 @@ public interface userApi {
     @GET("user/login.php")
     Call<login> login(@Query("email") String email,
                       @Query("password") String password);
+    @GET("user/create.php")
+    Call<login> register(@Query("email") String email,
+                      @Query("password") String password);
+    @GET("user/emailCheck.php")
+    Call<login> emailCheck(@Query("email") String email);
+
+
 
 }
 

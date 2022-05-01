@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/activity_devices.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/activity_login_page.xml" value="0.3875" />
         <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/activity_pigo.xml" value="0.36041666666666666" />
+        <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/activity_registration_page.xml" value="0.33" />
         <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/history.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/my_row.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Richie/AndroidStudioProjects/GardenWiz_v3/app/src/main/res/layout/quickdialog.xml" value="0.17552083333333332" />
