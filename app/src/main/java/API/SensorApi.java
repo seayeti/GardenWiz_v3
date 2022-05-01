@@ -43,5 +43,7 @@ public interface SensorApi {
     @GET("runs/readFilters.php")
     Call<runsData> getrunFilters(@Query("runID") int runID);
 //
+    @GET("results/resultexists.php")
+    Call<resultsData> resultsexists(@Query("runID") String runID);
 
 }

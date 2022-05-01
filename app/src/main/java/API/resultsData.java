@@ -8,6 +8,17 @@ public class resultsData {
     private static int betydbspeciesid;
     private String CommonName;
     private String ScientificName;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
 
     public String getScientificName() {
         return ScientificName;

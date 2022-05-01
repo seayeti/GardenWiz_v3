@@ -25,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -56,11 +58,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     private TextView rainValT;
     private Button viewRes;
     private Button refresh;
-    //todo delete
-//    private Handler mainHandler = new Handler();
-//    private boolean Running = true;
-//    private String[] sensorData;
-//    String bluetoothInput;
+
 
     private String mConnectedDeviceName = null;
     private StringBuffer mOutStringBuffer;
@@ -75,8 +73,8 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
     private int piStatus = 0;
     private ListView listView;
-    private int runID = 0;
-
+    private int RunID = 0;
+    private boolean connected = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,8 +140,9 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         Button quickRun = findViewById(R.id.quickRun);
         Button advRun = findViewById(R.id.advRun);
         Button viewRes = findViewById(R.id.allRes);
-
-
+        viewRes.setEnabled(false);
+        quickRun.setEnabled(false);
+        advRun.setEnabled(false);
         quickRun.setOnClickListener(v -> showQuickDialog());
         advRun.setOnClickListener(v -> showAdvDialog());
         viewRes.setOnClickListener(v -> getResPage());
@@ -151,8 +150,12 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         bluetoothButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startBluetooth();
 
+                if(mChatService != null && mChatService.getState() == 3){
+                    disconnect();
+                }else {
+                    startBluetooth();
+                }
             }
         });
 
@@ -188,9 +191,9 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
     //Res page
     public void getResPage() {
-        if (runID != 0) {
+        if (RunID != 0) {
             Intent intent = new Intent(context, Results.class);
-            Results.runID = String.valueOf(runID);
+            Results.runID = String.valueOf(RunID);
             context.startActivity(intent);
 
 
@@ -205,7 +208,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
         String durationTemp = "" + Duration;
         String[] nullArr = new String[]{"None", "None"};
-        runID = run_id;
+        RunID = run_id;
         runNameT.setText("Run ID: " + runName);
         humidValT.setText("Humidity: " + humidVal + "%");
         moistureValT.setText("Moisture: " + moistureVal + "%");
@@ -302,8 +305,42 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
             getPlants(messages);
 
         } else if (messages[0].equals("3")) {
+            System.out.println("in 3");
+            System.out.println(messages[2]);
+            if(messages[2].equals("Done\n")){
+                System.out.println("done");
 
-            isRunning();
+                Retrofit retrofit = RetrofitBuilder.getInstance();
+                SensorApi mySensorAPI = retrofit.create(SensorApi.class);
+                Call<resultsData> resultExists = mySensorAPI.resultsexists(messages[1]);
+                resultExists.enqueue(new Callback<resultsData>() {
+                    @Override
+                    public void onResponse(Call<resultsData> call, Response<resultsData> response) {
+                        if(response.body().getMessage().equals("True")){
+
+//                            System.out.println(response.body().getMessage());
+                            System.out.println("already results");
+                        }else {
+
+//                            System.out.println(response.body().getMessage());
+                            send("4, " + messages[1]);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<resultsData> call, Throwable t) {
+
+                    }
+                });
+
+
+
+            }else if(messages[2].equals("Active\n")){
+                System.out.println("active");
+                //send("1");
+
+            }
+
 
         }
 
@@ -329,7 +366,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         String ph = messages[6];
         System.out.println("getplants()");
         //gets the run informations
-
+        RunID = runID;
         Retrofit retrofit = RetrofitBuilder.getInstance();
         SensorApi mySensorAPI = retrofit.create(SensorApi.class);
         Call<runsData> getFilters = mySensorAPI.getrunFilters(runID);
@@ -354,6 +391,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                         }
 //                        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, plantNames);
                         ArrayAdapter adapter = new ArrayAdapter<String>(RunWiz.this,android.R.layout.simple_list_item_1, plantNames);
+                        
                         listView.setAdapter(adapter);
                         //call method to display a array of Strings (this is the Results)
 
@@ -367,12 +405,16 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                             resultCall.enqueue(new Callback<resultsData>() {
                                 @Override
                                 public void onResponse(Call<resultsData> call, Response<resultsData> response) {
+                                    Button viewRes = findViewById(R.id.allRes);
+                                    viewRes.setEnabled(true);
                                     System.out.println("Results");
                                 }
 
                                 @Override
                                 public void onFailure(Call<resultsData> call, Throwable t) {
                                     System.out.println("failed results");
+                                    Button viewRes = findViewById(R.id.allRes);
+                                    viewRes.setEnabled(false);
                                 }
                             });
 
@@ -383,6 +425,9 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                     @Override
                     public void onFailure(Call<List<plantData>> call, Throwable t) {
                         System.out.println("failed plants");
+                        String[] plantNames = {"None"};
+
+                        ArrayAdapter adapter = new ArrayAdapter<String>(RunWiz.this, android.R.layout.simple_list_item_1,plantNames );
                     }
                 });
             }
@@ -403,22 +448,27 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                 case Constants.MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
                         case BluetoothChatService.STATE_CONNECTED:
-                            Log.d("status", "connected");
+                            //Log.d("status", "connected");
                             msg("Connected to " + deviceName);
                             ImageButton bluetoothButton = (ImageButton) findViewById(R.id.BTButton);
                             bluetoothButton.setImageResource(R.drawable.bt_on);
+                            checkRunningState();
+                            Button quickRun = findViewById(R.id.quickRun);
+                            Button advRun = findViewById(R.id.advRun);
+                            quickRun.setEnabled(true);
+                            advRun.setEnabled(true);
                             // send the protocol version to the server
                             send("5," + Constants.PROTOCOL_VERSION + "," + Constants.CLIENT_NAME + "\n");
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
-                            Log.d("status", "connecting");
+                            //Log.d("status", "connecting");
                             msg("Connecting to " + deviceName);
 
 
                             break;
                         case BluetoothChatService.STATE_LISTEN:
                         case BluetoothChatService.STATE_NONE:
-                            Log.d("status", "not connected");
+                            //Log.d("status", "not connected");
                             msg("Not connected");
                             disconnect();
                             break;
@@ -454,6 +504,27 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
         }
     };
+
+    private void checkRunningState() {
+        Retrofit retrofit = RetrofitBuilder.getInstance();
+        SensorApi getrunID = retrofit.create(SensorApi.class);
+        //System.out.println(response2.body().getRunID());
+
+        Call<runsData> runsCall = getrunID.getRunID(1);
+        runsCall.enqueue(new Callback<runsData>() {
+            @Override
+            public void onResponse(Call<runsData> call, Response<runsData> response) {
+                send("3,"+response.body().getRunID());
+            }
+
+            @Override
+            public void onFailure(Call<runsData> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
     @Override
     public void onBackPressed () {
