@@ -22,13 +22,15 @@
                 android:layout_marginStart="5dp"
                 app:layout_constraintStart_toEndOf="@+id/indoor"
                 app:layout_constraintTop_toBottomOf="@+id/edibleSwitch"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:layout_marginLeft="5dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/indoor"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
                 android:text="@string/indoors"
@@ -58,8 +60,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/durationView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
                 android:text="@string/duration"
@@ -71,8 +74,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/stateView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
                 android:text="@string/state"
@@ -84,8 +88,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/edibleView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
                 android:text="@string/edible"
@@ -97,8 +102,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/droughtView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
                 android:text="@string/drought_tolerance"
@@ -110,7 +116,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/commercialView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
@@ -123,7 +129,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bloomView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
@@ -136,7 +142,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/seasonView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
@@ -152,7 +158,7 @@
                 android:layout_height="50dp"
                 app:layout_constraintStart_toEndOf="@+id/commercialView"
                 app:layout_constraintTop_toBottomOf="@+id/durationSpin"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                tools:ignore="DuplicateSpeakableTextCheck,SpeakableTextPresentCheck" />
 
             <Spinner
                 android:id="@+id/bloomSpin"
@@ -204,7 +210,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"
@@ -217,7 +223,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/typeView"
                 android:layout_width="180dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/pressed_green"

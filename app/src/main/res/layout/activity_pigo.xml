@@ -12,7 +12,7 @@
         <ImageButton
             android:id="@+id/BTButton"
             android:layout_width="48dp"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:scaleType="fitXY"
@@ -22,7 +22,8 @@
             app:layout_constraintStart_toEndOf="@+id/weatherwiz"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.018"
-            app:srcCompat="@drawable/bt_off" />
+            app:srcCompat="@drawable/bt_off"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/piTitle"
@@ -38,37 +39,39 @@
 
         <Button
             android:id="@+id/allRes"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:text="@string/view_all_res"
-            app:layout_constraintBottom_toTopOf="@+id/quickRun"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <Button
             android:id="@+id/quickRun"
-            android:layout_width="120dp"
-            android:layout_height="47dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="80dp"
             android:text="@string/quick_run"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/advRun"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/allRes" />
 
         <Button
             android:id="@+id/advRun"
-            android:layout_width="120dp"
-            android:layout_height="47dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="60dp"
             android:text="@string/advanced_run"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/allRes"
+            app:layout_constraintVertical_bias="0.306" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
