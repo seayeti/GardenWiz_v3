@@ -49,6 +49,8 @@ public class AdvQuery extends DialogFragment implements OnItemSelectedListener {
     private Switch edible;
     private sensorData sensors;
     private int test =0;
+    private  String JWT = null;
+    private  String gUserID = null;
 
     public AdvQuery(Context context) {
         this.context = context;
@@ -169,7 +171,7 @@ public class AdvQuery extends DialogFragment implements OnItemSelectedListener {
 
                         Retrofit retrofit = RetrofitBuilder.getInstance();
                         SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                        Call<runsData> createRun = mySensorAPI.createRun(1, intduration, nameInput, "toimplement");
+                        Call<runsData> createRun = mySensorAPI.createRun("Bearer " + JWT, Integer.parseInt(gUserID), intduration, nameInput, "toimplement");
 
                         final int[] runid = new int[1];
                         final int finalIntduration1 = intduration;
@@ -182,7 +184,7 @@ public class AdvQuery extends DialogFragment implements OnItemSelectedListener {
                                 listener.applySend("2," + nameInput + "," + finalIntduration1 + "," + runid[0]);
                                 Retrofit retrofit = RetrofitBuilder.getInstance();
 
-                                Call<runsData> createFilters = mySensorAPI.createFilters(runid[0], stateInput, seasonInput, bloomInput, typeInput, droughtInput, commInput, edibleInput);
+                                Call<runsData> createFilters = mySensorAPI.createFilters("Bearer " + JWT,runid[0], stateInput, seasonInput, bloomInput, typeInput, droughtInput, commInput, edibleInput);
                                 createFilters.enqueue(new Callback<runsData>() {
                                     @Override
                                     public void onResponse(Call<runsData> call, Response<runsData> response2) {
@@ -204,143 +206,7 @@ public class AdvQuery extends DialogFragment implements OnItemSelectedListener {
 
                             }
                         });
-//                        ((RunWiz) getActivity()).send("2," + nameInput + "," + finalIntduration1 + "," + runid[0]);
-//                        ((RunWiz) getActivity()).send("2," + nameInput + "," + 60 + "," + 2);
-//
-//                        Retrofit retrofit = RetrofitBuilder.getInstance();
-//                        SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-//                        Call<runsData> IDcall = mySensorAPI.getRunID(1);
-//                        IDcall.enqueue(new Callback<runsData>() {
-//                            @Override
-//                            public void onResponse(Call<runsData> IDcall, Response<runsData> IDresponse) {
-//
-//                                //retrofit instance for updating a run
-//                                Retrofit retrofit = RetrofitBuilder.getInstance();
-//                                SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-//                                Call<runsData> call = mySensorAPI.updateRun(nameInput, IDresponse.body().getRunID());
-//                                call.enqueue(new Callback<runsData>() {
-//                                    @Override
-//                                    public void onResponse(Call<runsData> call, Response<runsData> response) {
-//                                        System.out.println("RunID " + IDresponse.body().getRunID());
-//
-//                                        if (IDresponse.body().getRunID() == 0) {
-//                                            //Error message saying that there are no sensors datas to test and to go run the pi.
-//                                        } else {
-//                                            //Retrofit instance for getting sensor data
-//
-//
-//                                            Retrofit retrofit = RetrofitBuilder.getInstance();
-//                                            SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-//                                            Call<sensorData> call2 = mySensorAPI.getSensorData(IDresponse.body().getRunID());
-//
-//                                            call2.enqueue(new Callback<sensorData>() {
-//
-//                                                @Override
-//                                                public void onResponse(Call<sensorData> call2, Response<sensorData> response2) {
-//                                                    if (response2.code() != 200) {
-//                                                        System.out.println("check con");
-//                                                        //txt.setText("check connection");
-//                                                        return;
-//                                                    }
-//                                                    sensors = response2.body();
-//
-//                                                    //pull sensor input
-//                                                    String moisture = String.valueOf(sensors.getMoisture());
-//                                                    String light = String.valueOf(sensors.getLight());
-//                                                    String ph = String.valueOf(sensors.getPh());
-//                                                    String humid = String.valueOf(sensors.getHumidity());
-//                                                    String temperature = String.valueOf(sensors.getTemp());
-//                                                    String rain = String.valueOf(sensors.getRain());
-//
-//
-//
-//                                                    //Retrofit call to get plants that match the sensor data
-//                                                    Retrofit retrofit = RetrofitBuilder.getInstance();
-//                                                    plantApi plantSearch = retrofit.create(plantApi.class);
-//                                                    System.out.println(moisture);
-//                                                    System.out.println(light);
-//                                                    System.out.println(ph);
-//                                                    Call<List<plantData>> plantCall = plantSearch.getadvData(sensors.getTemp(), moisture, light, ph, typeInput, seasonInput, bloomInput, stateInput, commInput, droughtInput, edibleInput);
-//
-//
-//                                                    plantCall.enqueue(new Callback<List<plantData>>() {
-//                                                        @Override
-//                                                        public void onResponse(Call<List<plantData>> call, Response<List<plantData>> response3) {
-//                                                            //txt.setText(response.body().get(1).getCommonName());
-//                                                            String[] plantNames = new String[response3.body().size()];
-//                                                            String[] betyID = new String[response3.body().size()];
-//                                                            for (int i = 0; i < response3.body().size(); i++) {
-//
-//                                                                plantNames[i] = response3.body().get(i).getCommonName();
-//                                                                betyID[i] = String.valueOf(response3.body().get(i).getBetydbspeciesid());
-//                                                                //System.out.println(response3.body().get(i).getCommonName());
-//                                                            }
-//
-//                                                            //call method to display a array of Strings (this is the Results)
-//                                                            listener.applyTexts(plantNames, IDresponse.body().getRunID(), nameInput, humid, moisture, light, temperature, rain, ph, 0);
-//
-//                                                            //retrofit call to set the Results in the database to be called later
-//                                                            for (int i = 0; i < response3.body().size(); i++) {
-//                                                                Retrofit retrofit = RetrofitBuilder.getInstance();
-//                                                                SensorApi resultCreate = retrofit.create(SensorApi.class);
-//                                                                //System.out.println(response2.body().getRunID());
-//
-//                                                                Call<resultsData> resultCall = resultCreate.createResult(IDresponse.body().getRunID(), betyID[i]);
-//                                                                resultCall.enqueue(new Callback<resultsData>() {
-//                                                                    @Override
-//                                                                    public void onResponse(Call<resultsData> call, Response<resultsData> response) {
-//                                                                        System.out.println("Results");
-//                                                                    }
-//
-//                                                                    @Override
-//                                                                    public void onFailure(Call<resultsData> call, Throwable t) {
-//                                                                    }
-//                                                                });
-//                                                            }
-//                                                        }
-//
-//                                                        @Override
-//                                                        public void onFailure(Call<List<plantData>> call, Throwable t) {
-//                                                            String[] plantNames = new String[1];
-//                                                            plantNames[0] = "none";
-//
-//
-//                                                            listener.applyTexts(plantNames, IDresponse.body().getRunID(), nameInput, humid, moisture, light, temperature, rain, ph, 0);
-//                                                        }
-//                                                    });
-//                                                }
-//
-//                                                @Override
-//                                                public void onFailure(Call<sensorData> call, Throwable t) {
-//                                                    System.out.println("sensors failed");
-//                                                }
-//
-//                                            });
-//                                        }
-//                                    }
-//
-//                                    @Override
-//                                    public void onFailure(Call<runsData> call, Throwable t) {
-//                                        System.out.println("runsData failed");
-//                                    }
-//                                });
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<runsData> call, Throwable t) {
-//                                System.out.println("runs Data failed");
-//                            }
-//
-//                        });
-//                    }
-//                })
-//
-//                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User cancelled the dialog
-//                    }
-//                });
-//
+
                     }
                 });
 

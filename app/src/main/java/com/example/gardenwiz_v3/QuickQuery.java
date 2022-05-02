@@ -26,6 +26,8 @@ import retrofit2.Retrofit;
 public class QuickQuery extends DialogFragment {
     private EditText name_input;
     private OnMyDialogResult listener;
+    private  String JWT = null;
+    private  String gUserID = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class QuickQuery extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View v = (inflater.inflate(R.layout.quickdialog, null));
         name_input = v.findViewById(R.id.name_input);
+        JWT = getArguments().getString("JWT");
+        gUserID = getArguments().getString("userID");
+
 
         builder.setTitle("Enter Parameters: ")
                 .setPositiveButton(R.string.go, new DialogInterface.OnClickListener() {
@@ -42,7 +47,7 @@ public class QuickQuery extends DialogFragment {
                         resultsData getPiData = new resultsData();
                         Retrofit retrofit = RetrofitBuilder.getInstance();
                         SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                        Call<runsData> createRun = mySensorAPI.createRun(1, 5, nameInput, "toimplement");
+                        Call<runsData> createRun = mySensorAPI.createRun("Bearer " + JWT, Integer.parseInt(gUserID), 5, nameInput, "toimplement");
 
                         final int[] runid = new int[1];
 
@@ -55,7 +60,7 @@ public class QuickQuery extends DialogFragment {
                                 listener.applySend("2," + nameInput + "," + 5 + "," + runid[0]);
                                 Retrofit retrofit = RetrofitBuilder.getInstance();
 
-                                Call<runsData> createFilters = mySensorAPI.createFilters(runid[0], "", "", "", "", "", "", "");
+                                Call<runsData> createFilters = mySensorAPI.createFilters("Bearer " + JWT, runid[0], "", "", "", "", "", "", "");
                                 createFilters.enqueue(new Callback<runsData>() {
                                     @Override
                                     public void onResponse(Call<runsData> call, Response<runsData> response2) {

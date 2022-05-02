@@ -4,6 +4,20 @@ public class login {
     private String jwt;
     private String message;
 
+    private String userID;
+
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+
+
+
     public String getMessage() {
         return message;
     }

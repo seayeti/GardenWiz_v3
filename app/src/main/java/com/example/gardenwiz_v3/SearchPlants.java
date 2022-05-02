@@ -17,10 +17,17 @@ public class SearchPlants extends AppCompatActivity {
     public EditText plantName;
     public Spinner spinnerS,spinnerST,spinnerT,spinnerBP,spinnerD,spinnerDT, spinnerC;
     public Switch edible;
+    private  String JWT = null;
+    private  String gUserID = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_plants);
+
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
 
         // Switches
 
@@ -95,7 +102,9 @@ public class SearchPlants extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayList.class);
         // passing searchbar inputs    (trim to eliminate white spaces)
         intent.putExtra("msg1", plantName.getText().toString().trim()); //name
-
+        Bundle bundle = new Bundle();
+        bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         //passing spinner inputs
         intent.putExtra("spinnerST", spinnerST.getSelectedItem().toString());
         intent.putExtra("spinnerT", spinnerT.getSelectedItem().toString());
@@ -105,7 +114,7 @@ public class SearchPlants extends AppCompatActivity {
         intent.putExtra("spinnerD", spinnerD.getSelectedItem().toString());
         intent.putExtra("spinnerC", spinnerC.getSelectedItem().toString());
         intent.putExtra("edibleInput", edibleInput);
-
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

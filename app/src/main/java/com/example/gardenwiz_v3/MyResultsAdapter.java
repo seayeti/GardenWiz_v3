@@ -34,9 +34,10 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
     String bloomPeriod[];
     String edible[], shadeTol[], flowerColor[];
     String phMin[],phMax[];
+    private  String JWT = null;
+    private  String gUserID = null;
 
-
-    public MyResultsAdapter(Context ct, String[] s1, String[] s2, String[] img, List<resultsData> result, String[] typ, String[] bloomP, String[] stat, String[] edib, String[] shadeT, String[] flowerClr, String[] sym){
+    public MyResultsAdapter(Context ct, String[] s1, String[] s2, String[] img, List<resultsData> result, String[] typ, String[] bloomP, String[] stat, String[] edib, String[] shadeT, String[] flowerClr, String[] sym,String passedJWT,String userID){
         context = ct;
         data1 = s1;
         data2 = s2;
@@ -52,7 +53,8 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
         shadeTol = shadeT;
         flowerColor = flowerClr;
         symbol = sym;
-
+        JWT = passedJWT;
+        gUserID = userID;
     }
 
 
@@ -98,7 +100,8 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
 
                 intent.putExtra("dataName", results.get(position).getCommonName());
                 intent.putExtra("data2", results.get(position).getRunID());
-
+                intent.putExtra("JWT",JWT);
+                intent.putExtra("userID",gUserID);
                 // miroos
 
 //                intent.putExtra("dataState", results.get(position).getState());

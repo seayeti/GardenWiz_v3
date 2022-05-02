@@ -75,10 +75,16 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     private ListView listView;
     private int RunID = 0;
     private boolean connected = false;
+    private  String JWT = null;
+    private  String gUserID = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pigo);
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
 
         //for listing plants
         listView = findViewById(R.id.plantslistView);
@@ -171,6 +177,10 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     public void showQuickDialog() {
         // Create an instance of the dialog fragment and show it
         DialogFragment dialog = new QuickQuery();
+        Bundle bundle = new Bundle();
+        bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
+        dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "quickDialog");
 
     }
@@ -179,7 +189,10 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     public void showAdvDialog() {
         // Create an instance of the dialog fragment and show it
         DialogFragment dialog = new AdvQuery(this);
-
+        Bundle bundle = new Bundle();
+        bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
+        dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "AdvQuery");
     }
 
@@ -312,7 +325,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
 
                 Retrofit retrofit = RetrofitBuilder.getInstance();
                 SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                Call<resultsData> resultExists = mySensorAPI.resultsexists(messages[1]);
+                Call<resultsData> resultExists = mySensorAPI.resultsexists("Bearer " + JWT,messages[1]);
                 resultExists.enqueue(new Callback<resultsData>() {
                     @Override
                     public void onResponse(Call<resultsData> call, Response<resultsData> response) {
@@ -369,7 +382,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         RunID = runID;
         Retrofit retrofit = RetrofitBuilder.getInstance();
         SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-        Call<runsData> getFilters = mySensorAPI.getrunFilters(runID);
+        Call<runsData> getFilters = mySensorAPI.getrunFilters("Bearer " + JWT, runID);
         getFilters.enqueue(new Callback<runsData>() {
             @Override
             public void onResponse(Call<runsData> call, Response<runsData> response) {
@@ -377,7 +390,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                 runsData run = response.body();
 
                 plantApi plantSearch = retrofit.create(plantApi.class);
-                Call<List<plantData>> plantCall = plantSearch.getadvData(temp, moisture, light, ph, run.getType(), run.getSeason(), run.getBloom(), run.getState(), run.getComm(), run.getDrought(), run.getEdible());
+                Call<List<plantData>> plantCall = plantSearch.getadvData("Bearer " + JWT, temp, moisture, light, ph, run.getType(), run.getSeason(), run.getBloom(), run.getState(), run.getComm(), run.getDrought(), run.getEdible());
                 plantCall.enqueue(new Callback<List<plantData>>() {
                     @Override
                     public void onResponse(Call<List<plantData>> call, Response<List<plantData>> response) {
@@ -401,7 +414,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                             SensorApi resultCreate = retrofit.create(SensorApi.class);
                             //System.out.println(response2.body().getRunID());
 
-                            Call<resultsData> resultCall = resultCreate.createResult(runID, betyID[i]);
+                            Call<resultsData> resultCall = resultCreate.createResult("Bearer " + JWT, runID, betyID[i]);
                             resultCall.enqueue(new Callback<resultsData>() {
                                 @Override
                                 public void onResponse(Call<resultsData> call, Response<resultsData> response) {
@@ -510,7 +523,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         SensorApi getrunID = retrofit.create(SensorApi.class);
         //System.out.println(response2.body().getRunID());
 
-        Call<runsData> runsCall = getrunID.getRunID(1);
+        Call<runsData> runsCall = getrunID.getRunID("Bearer " + JWT,Integer.parseInt(gUserID));
         runsCall.enqueue(new Callback<runsData>() {
             @Override
             public void onResponse(Call<runsData> call, Response<runsData> response) {
