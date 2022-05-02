@@ -31,12 +31,15 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.history);
 
         recyclerView = findViewById(R.id.recyclerView);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Retrofit retrofit = RetrofitBuilder.getInstance();
         plantApi myPlantAPI = retrofit.create(plantApi.class);
         Call<List<runsData>> list = myPlantAPI.getrunsData();
+
         list.enqueue(new Callback<List<runsData>>() {
             @Override
             public void onResponse(Call<List<runsData>> call, Response<List<runsData>> response3) {
+                System.out.println("dumb");
                 String[] plantNames = new String[response3.body().size()];
                 String[] betyID = new String[response3.body().size()];
                 for (int i = 0; i < response3.body().size(); i++) {
@@ -45,7 +48,7 @@ public class History extends AppCompatActivity {
                     betyID[i] = String.valueOf(response3.body().get(i).getRunID());
                     System.out.println(response3.body().get(i).getRunID());
                 }
-                int[] images = null;
+                String[] images = null;
                 MyAdapter myAdapter = new MyAdapter(context, plantNames, betyID, images);
                 recyclerView.setAdapter(myAdapter);
                 //plantList.add();
@@ -53,6 +56,7 @@ public class History extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<runsData>> call, Throwable t) {
+                System.out.println(t.getMessage());
                 call.toString();
                 System.out.println(call.toString());
             }

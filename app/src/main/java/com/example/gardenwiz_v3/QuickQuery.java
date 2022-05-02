@@ -16,11 +16,8 @@ import java.util.List;
 
 import API.RetrofitBuilder;
 import API.SensorApi;
-import API.plantApi;
-import API.plantData;
 import API.resultsData;
 import API.runsData;
-import API.sensorData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,118 +33,49 @@ public class QuickQuery extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View v = (inflater.inflate(R.layout.quickdialog, null));
         name_input = v.findViewById(R.id.name_input);
+
         builder.setTitle("Enter Parameters: ")
                 .setPositiveButton(R.string.go, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Confirm choices
                         String nameInput = name_input.getText().toString();
                         resultsData getPiData = new resultsData();
-                        //Getting the runID
                         Retrofit retrofit = RetrofitBuilder.getInstance();
                         SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                        Call<runsData> IDcall = mySensorAPI.getRunID(1);
-                        IDcall.enqueue(new Callback<runsData>() {
+                        Call<runsData> createRun = mySensorAPI.createRun(1, 5, nameInput, "toimplement");
+
+                        final int[] runid = new int[1];
+
+                        createRun.enqueue(new Callback<runsData>() {
                             @Override
-                            public void onResponse(Call<runsData> IDcall, Response<runsData> IDresponse) {
+                            public void onResponse(Call<runsData> call, Response<runsData> response) {
+                                runid[0] = response.body().getRunID();
 
-                                //retrofit instance for updating a run
+
+                                listener.applySend("2," + nameInput + "," + 5 + "," + runid[0]);
                                 Retrofit retrofit = RetrofitBuilder.getInstance();
-                                SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                                Call<runsData> call = mySensorAPI.updateRun(nameInput, IDresponse.body().getRunID());
-                                call.enqueue(new Callback<runsData>() {
+
+                                Call<runsData> createFilters = mySensorAPI.createFilters(runid[0], "", "", "", "", "", "", "");
+                                createFilters.enqueue(new Callback<runsData>() {
                                     @Override
-                                    public void onResponse(Call<runsData> call, Response<runsData> response) {
-                                        System.out.println("RunID " + IDresponse.body().getRunID());
+                                    public void onResponse(Call<runsData> call, Response<runsData> response2) {
 
-                                        if (IDresponse.body().getRunID() == 0) {
-                                            //Error message saying that there are no sensors datas to test and to go run the pi.
-                                        } else {
-                                            //Retrofit instance for getting sensor data
-
-
-                                            Retrofit retrofit = RetrofitBuilder.getInstance();
-                                            SensorApi mySensorAPI = retrofit.create(SensorApi.class);
-                                            Call<sensorData> call2 = mySensorAPI.getSensorData(IDresponse.body().getRunID());
-
-                                            call2.enqueue(new Callback<sensorData>() {
-                                                @Override
-                                                public void onResponse(Call<sensorData> call2, Response<sensorData> response2) {
-                                                    if (response2.code() != 200) {
-                                                        System.out.println("check con");
-                                                        //txt.setText("check connection");
-                                                        return;
-                                                    }
-                                                    sensorData sensors = response2.body();
-                                                    String moisture = String.valueOf(sensors.getMoisture());
-                                                    String light = String.valueOf(sensors.getLight());
-                                                    String ph = String.valueOf(sensors.getPh());
-                                                    String humid = String.valueOf(sensors.getHumidity());
-                                                    String temperature = String.valueOf(sensors.getTemp());
-                                                    String rain = String.valueOf(sensors.getRain());
-
-                                                    //Retrofit call to get plants that match the sensor data
-                                                    Retrofit retrofit = RetrofitBuilder.getInstance();
-                                                    plantApi plantSearch = retrofit.create(plantApi.class);
-                                                    Call<List<plantData>> plantCall = plantSearch.getData(sensors.getTemp(), moisture, light, ph, "", "CA");
-
-                                                    plantCall.enqueue(new Callback<List<plantData>>() {
-                                                        @Override
-                                                        public void onResponse(Call<List<plantData>> call, Response<List<plantData>> response3) {
-                                                            //txt.setText(response.body().get(1).getCommonName());
-                                                            String[] plantNames = new String[response3.body().size()];
-                                                            String[] betyID = new String[response3.body().size()];
-                                                            for (int i = 0; i < response3.body().size(); i++) {
-
-                                                                plantNames[i] = response3.body().get(i).getCommonName();
-                                                                betyID[i] = String.valueOf(response3.body().get(i).getBetydbspeciesid());
-                                                                //System.out.println(response3.body().get(i).getCommonName());
-                                                            }
-                                                            //call method to display a array of Strings (this is the Results)
-
-                                                            listener.applyTexts(plantNames, IDresponse.body().getRunID(), nameInput, humid, moisture, light, temperature, rain, ph, 5);
-
-                                                            //retrofit call to set the Results in the database to be called later
-                                                            for (int i = 0; i < response3.body().size(); i++) {
-                                                                Retrofit retrofit = RetrofitBuilder.getInstance();
-                                                                SensorApi restultCreate = retrofit.create(SensorApi.class);
-                                                                Call<resultsData> resultCall = restultCreate.createResult(IDresponse.body().getRunID(), betyID[i]);
-                                                                resultCall.enqueue(new Callback<resultsData>() {
-                                                                    @Override
-                                                                    public void onResponse(Call<resultsData> call, Response<resultsData> response) {
-                                                                        System.out.println("Results");
-                                                                    }
-
-                                                                    @Override
-                                                                    public void onFailure(Call<resultsData> call, Throwable t) {
-                                                                    }
-                                                                });
-                                                            }
-                                                        }
-
-                                                        @Override
-                                                        public void onFailure(Call<List<plantData>> call, Throwable t) {
-                                                        }
-                                                    });
-                                                }
-
-                                                @Override
-                                                public void onFailure(Call<sensorData> call, Throwable t) {
-                                                }
-
-                                            });
-                                        }
                                     }
 
                                     @Override
                                     public void onFailure(Call<runsData> call, Throwable t) {
+
                                     }
+
                                 });
+
+
                             }
 
                             @Override
                             public void onFailure(Call<runsData> call, Throwable t) {
-                            }
 
+                            }
                         });
                     }
                 })
@@ -177,5 +105,7 @@ public class QuickQuery extends DialogFragment {
         void applyTexts(String[] plantNames, int runID, String runName, String humidVal,
                         String moistureVal, String lightVal, String tempVal, String rainVal,
                         String phVal, int Duration);
+
+        void applySend(String test);
     }
 }

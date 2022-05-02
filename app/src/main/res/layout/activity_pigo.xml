@@ -9,6 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/BTButton"
+            android:layout_width="48dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintStart_toEndOf="@+id/weatherwiz"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.018"
+            app:srcCompat="@drawable/bt_off" />
+
         <TextView
             android:id="@+id/piTitle"
             android:layout_width="wrap_content"
@@ -21,20 +36,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/allRes"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_colors"
+            android:layout_marginTop="4dp"
             android:text="@string/view_all_res"
-            android:textColor="@color/white"
-            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/quickRun"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="1.0"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintVertical_bias="0.15" />
+
+        <Button
+            android:id="@+id/quickRun"
+            android:layout_width="120dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/quick_run"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/advRun"
+            android:layout_width="120dp"
+            android:layout_height="47dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/advanced_run"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -50,67 +84,58 @@
                 android:id="@+id/gwTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/gardenwiz_data"
-                android:textSize="17sp" />
+                android:text="@string/gardenwiz_data" />
 
             <TextView
                 android:id="@+id/name_of_run"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
                 android:text="@string/name_of_run" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="32dp" />
 
             <TextView
                 android:id="@+id/durationList"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/durationList" />
 
             <TextView
                 android:id="@+id/temperature"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/temperatureList" />
 
             <TextView
                 android:id="@+id/moisture"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/moistureList" />
 
             <TextView
                 android:id="@+id/humidity"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/humidList" />
 
             <TextView
                 android:id="@+id/ph"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/phList" />
 
             <TextView
                 android:id="@+id/rain"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rainList" />
 
             <TextView
                 android:id="@+id/lumen"
-                android:textSize="17sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/lightList" />
@@ -118,48 +143,26 @@
             <ListView
                 android:id="@+id/plantslistView"
                 android:layout_width="match_parent"
-                android:layout_height="166dp"
+                android:layout_height="183dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+
+            </ListView>
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/noConnection"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/ifnotconnected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/piTitle"
             app:srcCompat="@drawable/no_signalicon"
-            tools:ignore="ImageContrastCheck"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/quickRun"
-            android:layout_width="129dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="68dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/button_colors"
-            android:text="@string/quick_run"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/advRun"
-            android:layout_width="129dp"
-            android:layout_height="51dp"
-            android:layout_marginEnd="68dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/button_colors"
-            android:text="@string/advanced_run"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

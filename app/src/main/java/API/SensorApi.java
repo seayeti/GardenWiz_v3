@@ -30,4 +30,20 @@ public interface SensorApi {
     @GET("sensor/getSensorData.php")
     Call<sensorData> getSensorData(@Query("runID") int runID);
 
+    @GET("runs/createFilters.php")
+    Call<runsData> createFilters(@Query("runID") int runID,
+                                  @Query("state") String state,
+                                  @Query("season") String season,
+                                  @Query("bloom") String bloom,
+                                  @Query("type") String type,
+                                  @Query("drought") String drought,
+                                  @Query("comm") String comm,
+                                  @Query("edible") String edible);
+
+    @GET("runs/readFilters.php")
+    Call<runsData> getrunFilters(@Query("runID") int runID);
+//
+    @GET("results/resultexists.php")
+    Call<resultsData> resultsexists(@Query("runID") String runID);
+
 }

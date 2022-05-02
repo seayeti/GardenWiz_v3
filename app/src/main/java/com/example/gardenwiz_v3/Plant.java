@@ -11,20 +11,20 @@ public class Plant {
     private String edible, shadeTol, flowerColor;
     private double  phMin,phMax;
 
-    public Plant(String nam, String typ, String seas, String bloomP, String stat, String commA, String droughtT, String edib, double phmin, double phmax, String shadeT, String flowerClr, String sym){
+    public Plant(String nam, String typ, String seas, String bloomP){
         name = nam;
         type = typ;
         season = seas;
         bloomPeriod = bloomP;
-        state = stat;
-        commAvail = commA;
-        droughtTol = droughtT;
-        edible = edib;
-        phMin = phmin;
-        phMax = phmax;
-        shadeTol = shadeT;
-        flowerColor = flowerClr;
-        symbol = sym;
+//        state = stat;
+//        commAvail = commA;
+//        droughtTol = droughtT;
+//        edible = edib;
+//        phMin = phmin;
+//        phMax = phmax;
+//        shadeTol = shadeT;
+//        flowerColor = flowerClr;
+//        symbol = sym;
     }
 
     public String getEdible() {

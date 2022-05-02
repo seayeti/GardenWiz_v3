@@ -10,9 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
+import API.PlantImages;
 import API.RetrofitBuilder;
+import API.RetrofitImages;
 import API.plantApi;
 import API.resultsData;
 import retrofit2.Call;
@@ -46,6 +51,7 @@ public class Results extends Activity {
             public void onResponse(Call<List<resultsData>> call, Response<List<resultsData>> response3) {
                 String[] plantNames = new String[response3.body().size()];
                 String[] betyID = new String[response3.body().size()];
+                String[] sciName = new String[response3.body().size()];
                 String[] state = new String[response3.body().size()];
                 String[] type = new String[response3.body().size()];
                 String[] shadeT = new String[response3.body().size()];
@@ -55,33 +61,66 @@ public class Results extends Activity {
                 String[] phMax = new String[response3.body().size()];
                 String[] flowerColor = new String[response3.body().size()];
                 String[] symbol = new String[response3.body().size()];
-
+                String[] images = new String[response3.body().size()];
+                boolean done = false;
                 List<resultsData> resultsdata = response3.body();
                 for (int i = 0; i < response3.body().size(); i++) {
 
                     plantNames[i] = String.valueOf(response3.body().get(i).getCommonName());
                     betyID[i] = String.valueOf(response3.body().get(i).getBetyID());
-
-                    state[i] = String.valueOf(response3.body().get(i).getState());
-                    type[i] = String.valueOf(response3.body().get(i).getType());
-                    shadeT[i] = String.valueOf(response3.body().get(i).getShadeTol());
-                    edible[i] = String.valueOf(response3.body().get(i).getEdible());
-                    bloomP[i] = String.valueOf(response3.body().get(i).getBloomPeriod());
-//                    phMin[i] = String.valueOf(response3.body().get(i).getPhMin());
-//                    phMax[i] = String.valueOf(response3.body().get(i).getPhMax());
-                    flowerColor[i] = String.valueOf(response3.body().get(i).getFlowerColor());
-                    symbol[i] = String.valueOf(response3.body().get(i).getSymbol());
+                    System.out.println(response3.body().get(i).getScientificName());
+                    sciName[i] = String.valueOf(response3.body().get(i).getScientificName());
+//                    state[i] = String.valueOf(response3.body().get(i).getState());
+//                    type[i] = String.valueOf(response3.body().get(i).getType());
+//                    shadeT[i] = String.valueOf(response3.body().get(i).getShadeTol());
+//                    edible[i] = String.valueOf(response3.body().get(i).getEdible());
+//                    bloomP[i] = String.valueOf(response3.body().get(i).getBloomPeriod());
+////                    phMin[i] = String.valueOf(response3.body().get(i).getPhMin());
+////                    phMax[i] = String.valueOf(response3.body().get(i).getPhMax());
+//                    flowerColor[i] = String.valueOf(response3.body().get(i).getFlowerColor());
+//                    symbol[i] = String.valueOf(response3.body().get(i).getSymbol());
 
                     //System.out.println(response3.body().get(i).getBetyID());
-                }
-                int[] images = null;
-                //
-                //MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata );
-                //
-                MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata, type, bloomP, state,  edible, shadeT, flowerColor, symbol);
 
-                recyclerView.setAdapter(myAdapter);
-                //plantList.add();
+                    Retrofit retrofit = RetrofitImages.getInstance();
+                    plantApi myPlantAPI = retrofit.create(plantApi.class);
+                    Call<PlantImages> list = myPlantAPI.getplantImages("query","json","pageimages",sciName[i], "2","100");
+                    int finalI = i;
+                    list.enqueue(new Callback<PlantImages>() {
+                        @Override
+                        public void onResponse(Call<PlantImages> call, Response<PlantImages> response) {
+                            //System.out.println("------");
+                            PlantImages plants;
+                            if(response.body().getQuery().getPages().get(0).getMissing() == null) {
+                                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
+                                images[finalI] = response.body().getQuery().getPages().get(0).getThumbnail().getSource();
+
+                            }
+                            if(finalI == response3.body().size()-1){
+                                //
+                                //MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata );
+                                //
+                                MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata, type, bloomP, state,  edible, shadeT, flowerColor, symbol);
+
+                                recyclerView.setAdapter(myAdapter);
+                                //plantList.add();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<PlantImages> call, Throwable t) {
+
+                        }
+
+                    });
+
+                }
+
+
+
+
+
             }
 
             @Override

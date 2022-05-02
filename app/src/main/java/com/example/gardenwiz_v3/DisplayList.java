@@ -66,7 +66,7 @@ public class DisplayList extends AppCompatActivity {
 
         Retrofit retrofit = RetrofitBuilder.getInstance();
         plantApi myPlantAPI = retrofit.create(plantApi.class);
-        Call<List<plantData>> list = myPlantAPI.getsearchPlants("",typeSpinner,seasonSpinner,bpSpinner,stateSpinner,cSpinner,dtSpinner,edibleSpinner);
+        Call<List<plantData>> list = myPlantAPI.getsearchPlantsMin(msg1,typeSpinner,seasonSpinner,bpSpinner,stateSpinner,cSpinner,dtSpinner,edibleSpinner);
         list.enqueue(new Callback<List<plantData>>() {
             @Override
             public void onResponse(Call<List<plantData>> call, Response<List<plantData>> response3) {
@@ -76,7 +76,7 @@ public class DisplayList extends AppCompatActivity {
                     System.out.println("   "+response3.body().get(i).getpH_Minimum());
 
 
-                    plantList.add(new Plant(response3.body().get(i).getCommonName(),response3.body().get(i).getGrowthHabit(),"",response3.body().get(i).getBloomPeriod(),response3.body().get(i).getState(),response3.body().get(i).getCommercialAvailability(),response3.body().get(i).getDroughtTolerance(),response3.body().get(i).getFruitConspicuous(), response3.body().get(i).getpH_Minimum(),response3.body().get(i).getpH_Maximum(),response3.body().get(i).getShadeTolerance(),response3.body().get(i).getFlowerColor(),response3.body().get(i).getSymbol()));
+                    plantList.add(new Plant(response3.body().get(i).getCommonName(),response3.body().get(i).getGrowthHabit(),"",response3.body().get(i).getBloomPeriod()));
                 }
                 PlantAdapter adapter = new PlantAdapter(context, R.layout.adapter_view_layout, plantList);
                 mListView.setAdapter(adapter);
@@ -87,15 +87,15 @@ public class DisplayList extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(DisplayList.this, PlantPage.class);
                         intent.putExtra("dataName", plantList.get(position).getName());
-                        intent.putExtra("dataState", plantList.get(position).getState());
+//                        intent.putExtra("dataState", plantList.get(position).getState());
                         intent.putExtra("dataType", plantList.get(position).getType());
-                        intent.putExtra("dataShadeT", plantList.get(position).getShadeTol());
-                        intent.putExtra("dataEdible", plantList.get(position).getEdible());
+//                        intent.putExtra("dataShadeT", plantList.get(position).getShadeTol());
+//                        intent.putExtra("dataEdible", plantList.get(position).getEdible());
                         intent.putExtra("dataBloomP", plantList.get(position).getBloomPeriod());
-                        intent.putExtra("dataPhMin", plantList.get(position).getPhMin());
-                        intent.putExtra("dataPhMax", plantList.get(position).getPhMax());
-                        intent.putExtra("dataFlowerColor", plantList.get(position).getFlowerColor());
-                        intent.putExtra("dataSymbol", plantList.get(position).getSymbol());
+//                        intent.putExtra("dataPhMin", plantList.get(position).getPhMin());
+//                        intent.putExtra("dataPhMax", plantList.get(position).getPhMax());
+//                        intent.putExtra("dataFlowerColor", plantList.get(position).getFlowerColor());
+//                        intent.putExtra("dataSymbol", plantList.get(position).getSymbol());
 
 
                         startActivity(intent);
