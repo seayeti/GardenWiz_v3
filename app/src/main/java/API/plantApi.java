@@ -66,7 +66,8 @@ public interface plantApi {
                                              @Query("PalatableHuman") String PalatableHuman);
 
     @GET("runs/read.php")
-    Call<List<runsData>> getrunsData(@Header("Authorization") String token);
+    Call<List<runsData>> getrunsData(@Header("Authorization") String token,
+                                     @Query("userID") int userID);
 
     @GET("results/searchRun.php")
     Call<List<resultsData>> getresultsData(@Header("Authorization") String token,

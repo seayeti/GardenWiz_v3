@@ -406,6 +406,12 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                         ArrayAdapter adapter = new ArrayAdapter<String>(RunWiz.this,android.R.layout.simple_list_item_1, plantNames);
                         
                         listView.setAdapter(adapter);
+                        listView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                listView.getOnItemClickListener();
+                            }
+                        });
                         //call method to display a array of Strings (this is the Results)
 
                         //retrofit call to set the Results in the database to be called later
