@@ -62,15 +62,15 @@ public class Results extends Activity {
                     plantNames[i] = String.valueOf(response3.body().get(i).getCommonName());
                     betyID[i] = String.valueOf(response3.body().get(i).getBetyID());
 
-                    state[i] = String.valueOf(response3.body().get(i).getState());
-                    type[i] = String.valueOf(response3.body().get(i).getType());
-                    shadeT[i] = String.valueOf(response3.body().get(i).getShadeTol());
-                    edible[i] = String.valueOf(response3.body().get(i).getEdible());
-                    bloomP[i] = String.valueOf(response3.body().get(i).getBloomPeriod());
-//                    phMin[i] = String.valueOf(response3.body().get(i).getPhMin());
-//                    phMax[i] = String.valueOf(response3.body().get(i).getPhMax());
-                    flowerColor[i] = String.valueOf(response3.body().get(i).getFlowerColor());
-                    symbol[i] = String.valueOf(response3.body().get(i).getSymbol());
+//                    state[i] = String.valueOf(response3.body().get(i).getState());
+//                    type[i] = String.valueOf(response3.body().get(i).getType());
+//                    shadeT[i] = String.valueOf(response3.body().get(i).getShadeTol());
+//                    edible[i] = String.valueOf(response3.body().get(i).getEdible());
+//                    bloomP[i] = String.valueOf(response3.body().get(i).getBloomPeriod());
+////                    phMin[i] = String.valueOf(response3.body().get(i).getPhMin());
+////                    phMax[i] = String.valueOf(response3.body().get(i).getPhMax());
+//                    flowerColor[i] = String.valueOf(response3.body().get(i).getFlowerColor());
+//                    symbol[i] = String.valueOf(response3.body().get(i).getSymbol());
 
                     //System.out.println(response3.body().get(i).getBetyID());
                 }

@@ -84,15 +84,15 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
 
                 // miroos
 
-                intent.putExtra("dataState", results.get(position).getState());
-                intent.putExtra("dataType", results.get(position).getType());
-                intent.putExtra("dataShadeT", results.get(position).getShadeTol());
-                intent.putExtra("dataEdible", results.get(position).getEdible());
-                intent.putExtra("dataBloomP", results.get(position).getBloomPeriod());
-                intent.putExtra("dataPhMin", results.get(position).getPhMin());
-                intent.putExtra("dataPhMax", results.get(position).getPhMax());
-                intent.putExtra("dataFlowerColor", results.get(position).getFlowerColor());
-                intent.putExtra("dataSymbol", results.get(position).getSymbol());
+//                intent.putExtra("dataState", results.get(position).getState());
+//                intent.putExtra("dataType", results.get(position).getType());
+//                intent.putExtra("dataShadeT", results.get(position).getShadeTol());
+//                intent.putExtra("dataEdible", results.get(position).getEdible());
+//                intent.putExtra("dataBloomP", results.get(position).getBloomPeriod());
+//                intent.putExtra("dataPhMin", results.get(position).getPhMin());
+//                intent.putExtra("dataPhMax", results.get(position).getPhMax());
+//                intent.putExtra("dataFlowerColor", results.get(position).getFlowerColor());
+//                intent.putExtra("dataSymbol", results.get(position).getSymbol());
 
                 // end miroos
 
