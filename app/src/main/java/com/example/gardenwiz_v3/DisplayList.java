@@ -30,16 +30,20 @@ public class DisplayList extends AppCompatActivity {
     public ArrayList<Plant> plantList;
     Context context = DisplayList.this;
     List<resultsData> results;
-
+    private  String JWT = null;
+    private  String gUserID = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_go);
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
+
 
         // importing inputs from b1 xml
-        Bundle bundle = getIntent().getExtras();
         msg1 = bundle.getString("msg1");
 
         // reading spinner inputs
@@ -66,7 +70,7 @@ public class DisplayList extends AppCompatActivity {
 
         Retrofit retrofit = RetrofitBuilder.getInstance();
         plantApi myPlantAPI = retrofit.create(plantApi.class);
-        Call<List<plantData>> list = myPlantAPI.getsearchPlantsMin(msg1,typeSpinner,seasonSpinner,bpSpinner,stateSpinner,cSpinner,dtSpinner,edibleSpinner);
+        Call<List<plantData>> list = myPlantAPI.getsearchPlantsMin("Bearer " + JWT, msg1,typeSpinner,seasonSpinner,bpSpinner,stateSpinner,cSpinner,dtSpinner,edibleSpinner);
         list.enqueue(new Callback<List<plantData>>() {
             @Override
             public void onResponse(Call<List<plantData>> call, Response<List<plantData>> response3) {
@@ -96,6 +100,10 @@ public class DisplayList extends AppCompatActivity {
 //                        intent.putExtra("dataPhMax", plantList.get(position).getPhMax());
 //                        intent.putExtra("dataFlowerColor", plantList.get(position).getFlowerColor());
 //                        intent.putExtra("dataSymbol", plantList.get(position).getSymbol());
+                        Bundle bundle = new Bundle();
+                        bundle.putString("JWT", JWT);
+                        bundle.putString("userID", gUserID);
+                        intent.putExtras(bundle);
 
 
                         startActivity(intent);

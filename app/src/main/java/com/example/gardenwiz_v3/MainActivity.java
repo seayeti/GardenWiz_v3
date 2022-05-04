@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private Button runPi, search, history;
     private  String JWT = null;
+    private  String gUserID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Bundle bundle = getIntent().getExtras();
         JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
+
         runPi = (Button) findViewById(R.id.pi_go);
         search = (Button) findViewById(R.id.search);
         history = (Button) findViewById(R.id.history);
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void openPiGo(){
         Bundle bundle = new Bundle();
         bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         Intent intent = new Intent(this, RunWiz.class);
         intent.putExtras(bundle);
         startActivity(intent);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public void openSearchPlants(){
         Bundle bundle = new Bundle();
         bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         Intent intent = new Intent(this,SearchPlants.class);
         intent.putExtras(bundle);
         startActivity(intent);
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public void openHistory(){
         Bundle bundle = new Bundle();
         bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         Intent intent = new Intent(this,History.class);
         intent.putExtras(bundle);
         startActivity(intent);

@@ -37,14 +37,16 @@ public class PlantPage extends Activity {
     String plantType, plantState,plantShadeT,plantEdible,plantBloomP,plantFlowerColor, plantSymbol, plantSciName;
     double plantPHMinInt,plantPHMaxInt;
     String plantPHMin,plantPHMax;
-
-
+    private  String JWT = null;
+    private  String gUserID = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plant_page);
-
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
 
         //image
         mainImage = findViewById(R.id.imageView3);
@@ -87,7 +89,7 @@ public class PlantPage extends Activity {
             System.out.println("dumb");
             Retrofit retrofit = RetrofitBuilder.getInstance();
             plantApi myPlantAPI = retrofit.create(plantApi.class);
-            Call<plantData> list = myPlantAPI.getplantData(plantName);
+            Call<plantData> list = myPlantAPI.getplantData("Bearer " + JWT, plantName);
             list.enqueue(new Callback<plantData>() {
                 @Override
                 public void onResponse(Call<plantData> call, Response<plantData> response) {

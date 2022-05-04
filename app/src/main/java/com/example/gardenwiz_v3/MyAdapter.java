@@ -32,7 +32,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     String bloomPeriod[];
     String edible[], shadeTol[], flowerColor[];
     String phMin[],phMax[];
-
+    private  String JWT = null;
+    private  String gUserID = null;
 
     public MyAdapter(Context ct, String s1[], String s2[], String img[],plantData plants,  String typ[], String bloomP[], String stat[], String edib[], String shadeT[], String flowerClr[], String sym[]){
         context = ct;
@@ -53,11 +54,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
     }
-    public MyAdapter(Context ct, String s1[], String s2[], String img[]){
+    public MyAdapter(Context ct, String s1[], String s2[], String img[], String passedJWT,String userID){
         context = ct;
         data1 = s1;
         data2 = s2;
         images = img;
+        JWT = passedJWT;
+        gUserID = userID;
 
 
     }
@@ -119,7 +122,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("dataPhMax", data2[position]);
                 intent.putExtra("dataFlowerColor", data2[position]);
                 intent.putExtra("dataSymbol", data2[position]);
-
+                intent.putExtra("JWT",JWT);
+                intent.putExtra("userID",gUserID);
                 // end miroos
                 Results.runID = data2[position];
                 context.startActivity(intent);

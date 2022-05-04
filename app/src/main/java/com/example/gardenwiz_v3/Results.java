@@ -33,19 +33,22 @@ public class Results extends Activity {
 
     String runName, desc;
     static String runID;
+    private  String JWT = null;
+    private  String gUserID = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
-
-
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
 
         recyclerView = findViewById(R.id.recyclerView);
         Retrofit retrofit = RetrofitBuilder.getInstance();
         plantApi myPlantAPI = retrofit.create(plantApi.class);
         int runid = Integer.parseInt(runID);
-        Call<List<resultsData>> list = myPlantAPI.getresultsData(runid);
+        Call<List<resultsData>> list = myPlantAPI.getresultsData("Bearer " + JWT, runid);
         list.enqueue(new Callback<List<resultsData>>() {
             @Override
             public void onResponse(Call<List<resultsData>> call, Response<List<resultsData>> response3) {
@@ -100,7 +103,7 @@ public class Results extends Activity {
                                 //
                                 //MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata );
                                 //
-                                MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata, type, bloomP, state,  edible, shadeT, flowerColor, symbol);
+                                MyResultsAdapter myAdapter = new MyResultsAdapter(context, plantNames, betyID, images, resultsdata, type, bloomP, state,  edible, shadeT, flowerColor, symbol,JWT,gUserID);
 
                                 recyclerView.setAdapter(myAdapter);
                                 //plantList.add();

@@ -56,7 +56,7 @@ public class LoginPage extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<login> call, Response<login> response) {
                         if(response.body() != null) {
-                            validate(response.body().getMessage(),response.body().getJwt());
+                            validate(response.body().getMessage(),response.body().getJwt(), response.body().getUserID());
                         }else{
                             counter--;
 
@@ -87,11 +87,12 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    private void validate(String Loginmessage, String JWT) {
+    private void validate(String Loginmessage, String JWT, String userID) {
         if(Loginmessage.equals("Successful login.")){
             Bundle bundle = new Bundle();
             System.out.println("Login " + JWT);
             bundle.putString("JWT", JWT);
+            bundle.putString("userID", userID);
             Intent intent = new Intent(LoginPage.this, MainActivity.class);
             intent.putExtras(bundle);
             startActivity(intent);

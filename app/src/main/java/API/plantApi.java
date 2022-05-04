@@ -4,11 +4,13 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface plantApi {
     @GET("Plantdb/search.php")
-    Call<List<plantData>> getData(@Query("TemperatureMinimum") double TemperatureMinimum,
+    Call<List<plantData>> getData(@Header("Authorization") String token,
+                                  @Query("TemperatureMinimum") double TemperatureMinimum,
                                   @Query("moisture") String moisture,
                                   @Query("Shade") String Shade,
                                   @Query("PH") String ph,
@@ -16,16 +18,20 @@ public interface plantApi {
                                   @Query("State") String State);
 
     @GET("Plantdb/read_single.php")
-    Call<List<plantData>> getData(@Query("CommonName") String CommonName);
+    Call<List<plantData>> getData(@Header("Authorization") String token,
+                                  @Query("CommonName") String CommonName);
 
     @GET("Plantdb/singlePlant.php")
-    Call<plantData> getplantData(@Query("CommonName") String CommonName);
+    Call<plantData> getplantData(@Header("Authorization") String token,
+                                 @Query("CommonName") String CommonName);
 
     @GET("Plantdb/singlePlantID.php")
-    Call<plantData> getBETYData(@Query("betydbspeciesid") int betydbspeciesid);
+    Call<plantData> getBETYData(@Header("Authorization") String token,
+                                @Query("betydbspeciesid") int betydbspeciesid);
 
     @GET("Plantdb/searchAdv.php")
-    Call<List<plantData>> getadvData(@Query("TemperatureMinimum") double TemperatureMinimum,
+    Call<List<plantData>> getadvData(@Header("Authorization") String token,
+                                     @Query("TemperatureMinimum") double TemperatureMinimum,
                                      @Query("moisture") String moisture,
                                      @Query("Shade") String Shade,
                                      @Query("PH") String ph,
@@ -34,33 +40,37 @@ public interface plantApi {
                                      @Query("BloomPeriod") String BloomPeriod,
                                      @Query("State") String State,
                                      @Query("CommercialAvailability") String CommercialAvailability,
-                                     @Query("DroughtTolerance")String DroughtTolerance,
-                                     @Query("PalatableHuman")String PalatableHuman);
+                                     @Query("DroughtTolerance") String DroughtTolerance,
+                                     @Query("PalatableHuman") String PalatableHuman);
 
     @GET("Plantdb/searchPlants.php")
-    Call<List<plantData>> getsearchPlants(@Query("CommonName") String CommonName,
+    Call<List<plantData>> getsearchPlants(@Header("Authorization") String token,
+                                          @Query("CommonName") String CommonName,
                                           @Query("GrowthHabit") String GrowthHabit,
                                           @Query("season") String season,
                                           @Query("BloomPeriod") String BloomPeriod,
                                           @Query("State") String State,
                                           @Query("CommercialAvailability") String CommercialAvailability,
-                                          @Query("DroughtTolerance")String DroughtTolerance,
-                                          @Query("PalatableHuman")String PalatableHuman);
+                                          @Query("DroughtTolerance") String DroughtTolerance,
+                                          @Query("PalatableHuman") String PalatableHuman);
 
     @GET("Plantdb/searchPlantsMin.php")
-    Call<List<plantData>> getsearchPlantsMin(@Query("CommonName") String CommonName,
-                                          @Query("GrowthHabit") String GrowthHabit,
-                                          @Query("season") String season,
-                                          @Query("BloomPeriod") String BloomPeriod,
-                                          @Query("State") String State,
-                                          @Query("CommercialAvailability") String CommercialAvailability,
-                                          @Query("DroughtTolerance")String DroughtTolerance,
-                                          @Query("PalatableHuman")String PalatableHuman);
+    Call<List<plantData>> getsearchPlantsMin(@Header("Authorization") String token,
+                                             @Query("CommonName") String CommonName,
+                                             @Query("GrowthHabit") String GrowthHabit,
+                                             @Query("season") String season,
+                                             @Query("BloomPeriod") String BloomPeriod,
+                                             @Query("State") String State,
+                                             @Query("CommercialAvailability") String CommercialAvailability,
+                                             @Query("DroughtTolerance") String DroughtTolerance,
+                                             @Query("PalatableHuman") String PalatableHuman);
+
     @GET("runs/read.php")
-    Call<List<runsData>> getrunsData();
+    Call<List<runsData>> getrunsData(@Header("Authorization") String token);
 
     @GET("results/searchRun.php")
-    Call<List<resultsData>> getresultsData(@Query("runID")int runID);
+    Call<List<resultsData>> getresultsData(@Header("Authorization") String token,
+                                           @Query("runID") int runID);
 
     @GET("api.php")
     Call<PlantImages> getplantImages(@Query("action") String action,
@@ -68,6 +78,6 @@ public interface plantApi {
                                      @Query("prop") String prop,
                                      @Query("titles") String titles,
                                      @Query("formatversion") String formatversion,
-                                     @Query("pithumbsize")String pithumbsize);
+                                     @Query("pithumbsize") String pithumbsize);
 
 }
