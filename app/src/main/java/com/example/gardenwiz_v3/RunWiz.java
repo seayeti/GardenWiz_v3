@@ -197,7 +197,11 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     }
 
     public void startBluetooth() {
+        Bundle bundle = new Bundle();
+        bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         Intent intent = new Intent(this, Devices.class);
+        intent.putExtras(bundle);
         startActivity(intent);
 
     }
@@ -205,7 +209,11 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     //Res page
     public void getResPage() {
         if (RunID != 0) {
+            Bundle bundle = new Bundle();
+            bundle.putString("JWT", JWT);
+            bundle.putString("userID", gUserID);
             Intent intent = new Intent(context, Results.class);
+            intent.putExtras(bundle);
             Results.runID = String.valueOf(RunID);
             context.startActivity(intent);
 
@@ -265,7 +273,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         if (mChatService != null) {
             mChatService.stop();
         }
-        ;
+
 
         finish();
     }
@@ -406,12 +414,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
                         ArrayAdapter adapter = new ArrayAdapter<String>(RunWiz.this,android.R.layout.simple_list_item_1, plantNames);
                         
                         listView.setAdapter(adapter);
-                        listView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                listView.getOnItemClickListener();
-                            }
-                        });
+
                         //call method to display a array of Strings (this is the Results)
 
                         //retrofit call to set the Results in the database to be called later
@@ -528,8 +531,8 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         Retrofit retrofit = RetrofitBuilder.getInstance();
         SensorApi getrunID = retrofit.create(SensorApi.class);
         //System.out.println(response2.body().getRunID());
-
-        Call<runsData> runsCall = getrunID.getRunID("Bearer " + JWT,Integer.parseInt(gUserID));
+        System.out.println(gUserID);
+        Call<runsData> runsCall = getrunID.getRunID("Bearer " + JWT, Integer.parseInt(gUserID));
         runsCall.enqueue(new Callback<runsData>() {
             @Override
             public void onResponse(Call<runsData> call, Response<runsData> response) {
