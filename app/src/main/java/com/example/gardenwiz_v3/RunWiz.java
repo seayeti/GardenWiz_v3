@@ -59,9 +59,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     //private TextView rainValT;
     private Button viewRes;
     private Button refresh;
-
-    //Progress Bar
-    ProgressDialog progressBar = new ProgressDialog(this);
+    private ProgressDialog progressBar;
 
     private String mConnectedDeviceName = null;
     private StringBuffer mOutStringBuffer;
@@ -88,6 +86,8 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         Bundle bundle = getIntent().getExtras();
         JWT = bundle.getString("JWT");
         gUserID = bundle.getString("userID");
+        //Progress Bar
+        ProgressDialog progressBar = new ProgressDialog(this);
 
         //for listing plants
         listView = findViewById(R.id.plantslistView);
@@ -305,7 +305,9 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         // clean the data buffer of any processed messages
         if (mInStringBuffer.lastIndexOf("\n") > -1) { //TODO: Add setProgress()
             mInStringBuffer.delete(0, mInStringBuffer.lastIndexOf("\n") + 1);
-            int duraInteger = Integer.valueOf(durationValT.getText().toString());
+            String duraString = durationValT.getText().toString();
+            duraString.replace("Duration:", "");
+            int duraInteger = Integer.valueOf(duraString);
             progressBar.setMax(duraInteger);
             progressBar.incrementProgressBy(30);
         }
