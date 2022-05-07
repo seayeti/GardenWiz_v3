@@ -149,10 +149,10 @@
                 android:id="@+id/durationList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/durationList"
+                android:background="@color/white"
                 android:textAllCaps="true"
                 android:textAppearance="@style/CustomTextData"
                 app:fontFamily="sans-serif-condensed" />

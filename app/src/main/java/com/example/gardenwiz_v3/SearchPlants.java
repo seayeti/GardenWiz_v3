@@ -36,7 +36,7 @@ public class SearchPlants extends AppCompatActivity {
 
 
         // Plant name search, fetch input
-        plantName = (EditText) findViewById(R.id.searchbar_name);
+        plantName = (EditText) findViewById(R.id.name_input);
 
         //Spinners
 

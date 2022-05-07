@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/bg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="false"
         android:alpha="0.5"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/leaf_bg"
-        tools:ignore="ImageContrastCheck"/>
+        tools:ignore="ImageContrastCheck" />
 
     <EditText
         android:id="@+id/etName"
@@ -67,6 +67,9 @@
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="20dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextTitle"
+        app:fontFamily="sans-serif-condensed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,12 +89,15 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnReg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
         android:background="@drawable/button_colors"
         android:text="Register"
         android:textColor="@color/white"
-        android:textSize="17sp"
+        android:textSize="20dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextTitle"
+        app:fontFamily="sans-serif-condensed"
         app:layout_constraintBottom_toTopOf="@+id/tvInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

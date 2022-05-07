@@ -27,7 +27,7 @@
     <string name="enter_name_of_run">Enter Name of Run:</string>
     <string name="state">State</string>
     <string name="commercial_availability">Commercial Availability</string>
-    <string name="drought_tolerance">Drought Tolerance</string>
+    <string name="drought_tolerance">Drought Tol.</string>
     <string name="native_to_state">Native to State</string>
     <string name="name_run">Name Run</string>
     <string name="plant_type">Plant Type</string>

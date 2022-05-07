@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PlantPage extends Activity {
+public class PlantPage extends AppCompatActivity {
     Context context = PlantPage.this;
     RecyclerView recyclerView;
     ImageView mainImage;
@@ -49,20 +50,20 @@ public class PlantPage extends Activity {
         gUserID = bundle.getString("userID");
 
         //image
-        mainImage = findViewById(R.id.imageView3);
+        mainImage = findViewById(R.id.plant_pic);
 
         // UNCHECK
-        Desc = findViewById(R.id.myText0);
+        Desc = findViewById(R.id.plant_desc);
 
-        PlantName = findViewById(R.id.myText1);
-        PlantType = findViewById(R.id.myText3);
-        PlantState = findViewById(R.id.myText2);
-        PlantShadeT = findViewById(R.id.myText4);
-        PlantEdible = findViewById(R.id.myText5);
-        PlantBloomP = findViewById(R.id.myText6);
-        PlantPHMin = findViewById(R.id.myText7);
-        PlantPHMax = findViewById(R.id.myText8);
-        PlantFlowerColor = findViewById(R.id.myText9);
+        PlantName = findViewById(R.id.plant_name_res);
+        PlantType = findViewById(R.id.plant_type_data);
+        PlantState = findViewById(R.id.state_data);
+        PlantShadeT = findViewById(R.id.shade_data);
+        PlantEdible = findViewById(R.id.edible_data);
+        PlantBloomP = findViewById(R.id.bloomP_data);
+        PlantPHMin = findViewById(R.id.ph_min_data);
+        PlantPHMax = findViewById(R.id.ph_max_data);
+        PlantFlowerColor = findViewById(R.id.flower_color_data);
 
         // image
         RequestOptions requestOptions = new RequestOptions();
@@ -86,7 +87,7 @@ public class PlantPage extends Activity {
 
             // UNCHECK
             desc = getIntent().getStringExtra("data2");
-            System.out.println("dumb");
+            System.out.println("test");
             Retrofit retrofit = RetrofitBuilder.getInstance();
             plantApi myPlantAPI = retrofit.create(plantApi.class);
             Call<plantData> list = myPlantAPI.getplantData("Bearer " + JWT, plantName);
@@ -112,7 +113,7 @@ public class PlantPage extends Activity {
 
                 @Override
                 public void onFailure(Call<plantData> call, Throwable t) {
-                    System.out.println("fail");
+                    System.out.println("failed");
                     System.out.println(t.getMessage());
                 }
             });
