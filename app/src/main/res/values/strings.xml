@@ -78,7 +78,7 @@
     </string-array>
     <string-array name="durationDrop">
         <item></item>
-        <item>5s</item>
+        <item>300s</item>
         <item>1hr</item>
         <item>2hr</item>
         <item>6hr</item>
