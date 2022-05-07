@@ -132,11 +132,10 @@
                 tools:ignore="TextContrastCheck" />
 
             <ProgressBar
-                android:id="@+id/determinantBar"
+                android:id="@+id/indeterminantBar"
                 style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="0"
                 android:background="@color/white" />
 
             <TextView
