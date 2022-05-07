@@ -204,7 +204,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/howTo"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -218,7 +218,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/howTo" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/typeView"
@@ -244,7 +244,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/howTo"
                 android:layout_width="343dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="8dp"

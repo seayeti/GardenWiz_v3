@@ -35,7 +35,7 @@
     <string name="enter_a_name">enter a name</string>
     <string name="enter_initials_ca">enter initials \'CA\'</string>
     <string name="plant_name">Plant Name</string>
-    <string name="enter_plant_name">.       Enter plant name</string>
+    <string name="enter_plant_name">Enter plant name</string>
     <string name="FR_description">First, name the run with something memorable. For example, "Living Room Corner". Then select the filters applicable for your run, and tap go!</string>
     <string name="indoors">Indoors</string>
     <string name="Search_description">Enter the parameters to search the PLANTS Database. To not consider a filter, leave it blank.</string>
