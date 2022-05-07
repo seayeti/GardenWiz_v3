@@ -38,7 +38,8 @@ public class History extends AppCompatActivity {
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Retrofit retrofit = RetrofitBuilder.getInstance();
         plantApi myPlantAPI = retrofit.create(plantApi.class);
-        Call<List<runsData>> list = myPlantAPI.getrunsData("Bearer " + JWT, "1");
+        System.out.println("user id "+gUserID);
+        Call<List<runsData>> list = myPlantAPI.getrunsData("Bearer " + JWT, Integer.parseInt(gUserID));
 
         list.enqueue(new Callback<List<runsData>>() {
             @Override
@@ -47,13 +48,13 @@ public class History extends AppCompatActivity {
                 String[] plantNames = new String[response3.body().size()];
                 String[] betyID = new String[response3.body().size()];
                 for (int i = 0; i < response3.body().size(); i++) {
-
+                    System.out.println(response3.body().get(i).getRunName());
                     plantNames[i] = String.valueOf(response3.body().get(i).getRunName());
                     betyID[i] = String.valueOf(response3.body().get(i).getRunID());
                     System.out.println(response3.body().get(i).getRunID());
                 }
                 String[] images = null;
-                MyAdapter myAdapter = new MyAdapter(context, plantNames, betyID, images, JWT, "1");
+                MyAdapter myAdapter = new MyAdapter(context, plantNames, betyID, images, JWT, gUserID);
                 recyclerView.setAdapter(myAdapter);
                 //plantList.add();
             }
@@ -62,7 +63,7 @@ public class History extends AppCompatActivity {
             public void onFailure(Call<List<runsData>> call, Throwable t) {
                 System.out.println(t.getMessage());
                 call.toString();
-                System.out.println(call.toString());
+                System.out.println("fail "+call.toString());
             }
         });
 

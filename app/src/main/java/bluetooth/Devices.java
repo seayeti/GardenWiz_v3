@@ -35,6 +35,8 @@ public class Devices
 
     ListView devicelist;
     ImageButton infoButton;
+    private  String JWT = null;
+    private  String gUserID = null;
 
     private BluetoothAdapter myBluetooth = null;
     private Set<BluetoothDevice> pairedDevices;
@@ -45,6 +47,10 @@ public class Devices
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
+
+        Bundle bundle = getIntent().getExtras();
+        JWT = bundle.getString("JWT");
+        gUserID = bundle.getString("userID");
 
         devicelist = (ListView)findViewById(R.id.listView);
         if (ContextCompat.checkSelfPermission(Devices.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
@@ -97,7 +103,7 @@ public class Devices
 //        return true;
 //    }
 
-//    @Override
+    //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        int id = item.getItemId();
 //        if (id == R.id.settings) {
@@ -173,7 +179,11 @@ public class Devices
             // Make an intent to start next activity.
             Intent i = new Intent(Devices.this, RunWiz.class);
 
+            Bundle bundle = new Bundle();
+            bundle.putString("JWT", JWT);
+            bundle.putString("userID", gUserID);
             //Change the activity.
+            i.putExtras(bundle);
             i.putExtra(EXTRA_NAME, deviceName);
             i.putExtra(EXTRA_ADDRESS, address);
             startActivity(i);
@@ -182,4 +192,3 @@ public class Devices
 
 
 }
-

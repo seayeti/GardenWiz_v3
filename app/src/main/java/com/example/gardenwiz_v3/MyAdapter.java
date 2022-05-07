@@ -96,7 +96,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.myText1.setText(data1[position]);
         holder.myText2.setText(data2[position]);
-
+        holder.myImage.setImageResource(0);
 
 
         //holder.myImage.setImageResource(images[position]);
@@ -145,7 +145,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             myText1 = itemView.findViewById(R.id.plant_name_res);
             myText2 = itemView.findViewById(R.id.state_data);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-            //myImage = itemView.findViewById(R.id.imageView);
+            myImage = itemView.findViewById(R.id.imageView);
             //myText1.setText();
         }
     }

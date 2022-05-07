@@ -87,7 +87,7 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
                     .load(images[position])
                     .apply(requestOptions)
                     .into(holder.myImage);
-            System.out.println("test");
+
         }else {
             holder.myImage.setImageResource(R.drawable.dandelion);
         }
