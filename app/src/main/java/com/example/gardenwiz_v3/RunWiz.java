@@ -55,7 +55,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     private TextView lightValT;
     private TextView tempValT;
     private TextView phValT;
-    private TextView rainValT;
+    //private TextView rainValT;
     private Button viewRes;
     private Button refresh;
 
@@ -97,7 +97,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         lightValT = (TextView) findViewById(R.id.lumen);
         tempValT = (TextView) findViewById(R.id.temperature);
         phValT = (TextView) findViewById(R.id.ph);
-        rainValT = (TextView) findViewById(R.id.rain);
+        //rainValT = (TextView) findViewById(R.id.rain);
         ImageButton bluetoothButton = (ImageButton) findViewById(R.id.BTButton);
         //Getting the Bluetooth Device name and Mac Address.
         Intent newint = getIntent();
@@ -227,7 +227,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         moistureValT.setText("Moisture: " + moistureVal + "%");
         lightValT.setText("Light: " + lightVal + "%");
         tempValT.setText("Temperature: " + tempVal + "\u00B0F");
-        rainValT.setText("Rainfall: " + rainVal);
+        //rainValT.setText("Rainfall: " + rainVal);
         phValT.setText("PH: " + phVal);
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, plantNames);
         listView.setAdapter(adapter);

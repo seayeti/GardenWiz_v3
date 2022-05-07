@@ -11,7 +11,7 @@
     <string name="quick_run">Quick Run</string>
     <string name="adv_run">Filter Run</string>
     <string name="ifnotconnected">ifnotconnected</string>
-    <string name="name_of_run">name_of_run</string>
+    <string name="name_of_run">Name of Run: </string>
     <string name="duration">duration</string>
     <string name="advanced_run">Filter Run</string>
     <string name="confirm">confirm</string>
@@ -49,6 +49,7 @@
     <string name="phList">PH:</string>
     <string name="lightList">Light:</string>
     <string name="view_all_res">View All Results</string>
+    <string name="bg">bg</string>
     <string-array name="seasonDrop">
         <item></item>
         <item>Spring</item>
