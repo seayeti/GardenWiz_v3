@@ -70,10 +70,10 @@ public class PlantPage extends AppCompatActivity {
         requestOptions.placeholder(R.drawable.dandelion);
         requestOptions.error(R.drawable.dandelion);
 //
-        Glide.with(PlantPage.this)
-                .load("https://plants.sc.egov.usda.gov/ImageLibrary/original/acba3_001_php.jpg")
-                .apply(requestOptions)
-                .into(mainImage);
+//        Glide.with(PlantPage.this)
+//                .load("https://plants.sc.egov.usda.gov/ImageLibrary/original/acba3_001_php.jpg")
+//                .apply(requestOptions)
+//                .into(mainImage);
 
 
         plantName = "testing";
@@ -150,15 +150,15 @@ public class PlantPage extends AppCompatActivity {
 
                 PlantImages plants;
                 if(response.body().getQuery().getPages().get(0).getMissing() == null) {
-                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
-                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getWidth());
-                    System.out.println(response.raw().toString());
+//                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
+//                    System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getWidth());
+//                    System.out.println(response.raw().toString());
 
 
                     RequestOptions requestOptions = new RequestOptions();
                     requestOptions.placeholder(R.drawable.image_loading_logo);
                     requestOptions.error(R.drawable.image_loading_logo);
-                    if (response.body().getQuery().getPages().get(0).getThumbnail().getSource() != null) {
+                    if (response.body().getQuery().getPages().get(0).getThumbnail() != null) {
                         Glide.with(PlantPage.this)
                                 .load(response.body().getQuery().getPages().get(0).getThumbnail().getSource())
                                 .apply(requestOptions)

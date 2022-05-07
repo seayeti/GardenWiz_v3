@@ -202,18 +202,24 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     }
 
     public void startBluetooth() {
+        Bundle bundle = new Bundle();
+        bundle.putString("JWT", JWT);
+        bundle.putString("userID", gUserID);
         Intent intent = new Intent(this, Devices.class);
+        intent.putExtras(bundle);
         startActivity(intent);
-
     }
 
     //Res page
     public void getResPage() {
         if (RunID != 0) {
+            Bundle bundle = new Bundle();
+            bundle.putString("JWT", JWT);
+            bundle.putString("userID", gUserID);
             Intent intent = new Intent(context, Results.class);
+            intent.putExtras(bundle);
             Results.runID = String.valueOf(RunID);
             context.startActivity(intent);
-
 
         }
     }
@@ -303,25 +309,27 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         }
 
         // clean the data buffer of any processed messages
-        if (mInStringBuffer.lastIndexOf("\n") > -1) { //TODO: Add setProgress()
+        if (mInStringBuffer.lastIndexOf("\n") > -1) {
             mInStringBuffer.delete(0, mInStringBuffer.lastIndexOf("\n") + 1);
-            String duraString = durationValT.getText().toString();
-            duraString.replace("Duration:", "");
-            int duraInteger = Integer.valueOf(duraString);
-            progressBar.setMax(duraInteger);
-            progressBar.incrementProgressBy(30);
+
         }
         System.out.println("ttttt" + messages[0]);
-        if (messages[0].equals("1")) {
+        if (messages[0].equals("1")) {//TODO: Add setProgress()
             System.out.println("Aaaaaaaaaaaa");
-            runNameT.setText("Run name: " + messages[0]);
+            runNameT.setText("Run name: " + messages[7]);
             humidValT.setText("Humidity: " + messages[2]);
             moistureValT.setText("Moisture: " + messages[5]);
             lightValT.setText("Light: " + messages[3]);
             tempValT.setText("Temperature: " + messages[1] + "\u00B0F");
             phValT.setText("PH: " + messages[6]);
-            phValT.setText("PH: " + messages[6]);
 
+
+//            String duraString = durationValT.getText().toString();
+//            duraString.replace("Duration:", "");
+//            int duraInteger = Integer.valueOf(duraString);
+//            progressBar.setMax(duraInteger);
+//            progressBar.incrementProgressBy(30);
+//
         } else if (messages[0].equals("2")) {
 
             getPlants(messages);
@@ -532,7 +540,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         SensorApi getrunID = retrofit.create(SensorApi.class);
         //System.out.println(response2.body().getRunID());
 
-        Call<runsData> runsCall = getrunID.getRunID("Bearer " + JWT,Integer.parseInt(gUserID));
+        Call<runsData> runsCall = getrunID.getRunID("Bearer " + JWT, Integer.parseInt(gUserID));
         runsCall.enqueue(new Callback<runsData>() {
             @Override
             public void onResponse(Call<runsData> call, Response<runsData> response) {

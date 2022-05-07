@@ -46,7 +46,12 @@ public class Thumbnail implements Parcelable
     }
 
     public String getSource() {
-        return source;
+        if(source == null){
+            return "none";
+        }else {
+            return source;
+        }
+
     }
 
     public void setSource(String source) {
