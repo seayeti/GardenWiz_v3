@@ -21,7 +21,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
-
+//for progress bar
+import android.app.ProgressDialog;
 import com.google.android.material.tabs.TabLayout;
 
 import java.time.format.DateTimeFormatter;
@@ -55,10 +56,10 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     private TextView lightValT;
     private TextView tempValT;
     private TextView phValT;
-    private TextView rainValT;
+    //private TextView rainValT;
     private Button viewRes;
     private Button refresh;
-
+    private ProgressDialog progressBar;
 
     private String mConnectedDeviceName = null;
     private StringBuffer mOutStringBuffer;
@@ -85,10 +86,13 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         Bundle bundle = getIntent().getExtras();
         JWT = bundle.getString("JWT");
         gUserID = bundle.getString("userID");
+        //Progress Bar
+        ProgressDialog progressBar = new ProgressDialog(this);
 
         //for listing plants
         listView = findViewById(R.id.plantslistView);
-
+        //progress bar init
+        progressBar.setProgress(0);
         // TextView vars w/ locations
         runNameT = (TextView) findViewById(R.id.name_of_run);
         durationValT = (TextView) findViewById(R.id.durationList);
@@ -97,7 +101,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         lightValT = (TextView) findViewById(R.id.lumen);
         tempValT = (TextView) findViewById(R.id.temperature);
         phValT = (TextView) findViewById(R.id.ph);
-        rainValT = (TextView) findViewById(R.id.rain);
+        //rainValT = (TextView) findViewById(R.id.rain);
         ImageButton bluetoothButton = (ImageButton) findViewById(R.id.BTButton);
         //Getting the Bluetooth Device name and Mac Address.
         Intent newint = getIntent();
@@ -176,6 +180,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     //Quick Run Dialog
     public void showQuickDialog() {
         // Create an instance of the dialog fragment and show it
+
         DialogFragment dialog = new QuickQuery();
         Bundle bundle = new Bundle();
         bundle.putString("JWT", JWT);
@@ -217,9 +222,8 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
     @Override
     public void applyTexts(String[] plantNames, int run_id, String runName, String humidVal,
                            String moistureVal, String lightVal, String tempVal, String rainVal,
-                           String phVal, int Duration) {
+                           String phVal, int duration) {
 
-        String durationTemp = "" + Duration;
         String[] nullArr = new String[]{"None", "None"};
         RunID = run_id;
         runNameT.setText("Run ID: " + runName);
@@ -227,7 +231,7 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         moistureValT.setText("Moisture: " + moistureVal + "%");
         lightValT.setText("Light: " + lightVal + "%");
         tempValT.setText("Temperature: " + tempVal + "\u00B0F");
-        rainValT.setText("Rainfall: " + rainVal);
+        //rainValT.setText("Rainfall: " + rainVal);
         phValT.setText("PH: " + phVal);
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, plantNames);
         listView.setAdapter(adapter);
@@ -299,8 +303,13 @@ public class RunWiz extends MainActivity implements QuickQuery.OnMyDialogResult 
         }
 
         // clean the data buffer of any processed messages
-        if (mInStringBuffer.lastIndexOf("\n") > -1) {
+        if (mInStringBuffer.lastIndexOf("\n") > -1) { //TODO: Add setProgress()
             mInStringBuffer.delete(0, mInStringBuffer.lastIndexOf("\n") + 1);
+            String duraString = durationValT.getText().toString();
+            duraString.replace("Duration:", "");
+            int duraInteger = Integer.valueOf(duraString);
+            progressBar.setMax(duraInteger);
+            progressBar.incrementProgressBy(30);
         }
         System.out.println("ttttt" + messages[0]);
         if (messages[0].equals("1")) {

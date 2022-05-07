@@ -12,5 +12,9 @@
     <color name="pressed_green">#358856</color>
     <color name="dark_green">#25523B</color>
     <color name="gradient_green">#ABE098</color>
+    <color name="light_font">#FBFBFB</color>
+    <color name="grey_font">#ff9e9e9e</color>
+    <color name="text_shadow">#7F000000</color>
+    <color name="text_shadow_white">#FFFFFF</color>
 
 </resources>

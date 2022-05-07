@@ -136,8 +136,8 @@ public class MyResultsAdapter extends RecyclerView.Adapter<com.example.gardenwiz
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            myText1 = itemView.findViewById(R.id.myText1);
-            myText2 = itemView.findViewById(R.id.myText2);
+            myText1 = itemView.findViewById(R.id.plant_name_res);
+            myText2 = itemView.findViewById(R.id.state_data);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
 

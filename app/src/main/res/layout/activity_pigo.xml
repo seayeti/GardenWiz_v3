@@ -9,6 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:alpha="0.5"
+            android:contentDescription="@string/bg"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/leaf_bg"
+            tools:ignore="ImageContrastCheck" />
+
         <ImageButton
             android:id="@+id/BTButton"
             android:layout_width="48dp"
@@ -26,22 +41,31 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/piTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:id="@+id/gardenWiz"
+            android:layout_width="146dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:ems="10"
             android:text="@string/weatherwiz_status"
-            android:textColor="#1b6f16"
-            android:textSize="32sp"
+            android:textColor="#035405"
+            android:textSize="49dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.629" />
 
         <Button
             android:id="@+id/allRes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="201dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="24dp"
             android:text="@string/view_all_res"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/tree_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -50,13 +74,12 @@
             android:id="@+id/quickRun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginBottom="80dp"
             android:text="@string/quick_run"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/tree_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/advRun"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/allRes" />
 
@@ -64,89 +87,154 @@
             android:id="@+id/advRun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="60dp"
             android:text="@string/advanced_run"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/tree_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/allRes"
-            app:layout_constraintVertical_bias="0.306" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/quickRun"
+            app:layout_constraintTop_toBottomOf="@+id/allRes" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="393dp"
-            android:layout_height="395dp"
-            android:layout_marginTop="9dp"
+            android:layout_width="345dp"
+            android:layout_height="478dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noConnection">
+            app:layout_constraintTop_toBottomOf="@+id/gardenWiz">
 
             <TextView
                 android:id="@+id/gwTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/gardenwiz_data" />
+                android:background="@color/tree_green"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/gardenwiz_data"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextTitle"
+                app:fontFamily="sans-serif-condensed"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/name_of_run"
+                style="@style/CustomTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name_of_run" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/name_of_run"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                android:textColor="@color/dark_green"
+                app:fontFamily="sans-serif-condensed"
+                tools:ignore="TextContrastCheck" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/indeterminantBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="32dp" />
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
 
             <TextView
                 android:id="@+id/durationList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/durationList" />
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/durationList"
+                android:background="@color/white"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/temperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/temperatureList" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/temperatureList"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/moisture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/moistureList" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/moistureList"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/humidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/humidList" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/humidList"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/ph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/phList" />
-
-            <TextView
-                android:id="@+id/rain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/rainList" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/phList"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/lumen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lightList" />
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/lightList"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextData"
+                app:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/gwTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/tree_green"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Results"
+                android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextTitle"
+                app:fontFamily="sans-serif-condensed"
+                tools:ignore="TextContrastCheck" />
 
             <ListView
                 android:id="@+id/plantslistView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="183dp"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -155,17 +243,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/noConnection"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/ifnotconnected"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/piTitle"
-            app:srcCompat="@drawable/no_signalicon"
-            tools:ignore="ImageContrastCheck" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

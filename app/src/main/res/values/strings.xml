@@ -11,7 +11,7 @@
     <string name="quick_run">Quick Run</string>
     <string name="adv_run">Filter Run</string>
     <string name="ifnotconnected">ifnotconnected</string>
-    <string name="name_of_run">name_of_run</string>
+    <string name="name_of_run">Name of Run: </string>
     <string name="duration">duration</string>
     <string name="advanced_run">Filter Run</string>
     <string name="confirm">confirm</string>
@@ -27,7 +27,7 @@
     <string name="enter_name_of_run">Enter Name of Run:</string>
     <string name="state">State</string>
     <string name="commercial_availability">Commercial Availability</string>
-    <string name="drought_tolerance">Drought Tolerance</string>
+    <string name="drought_tolerance">Drought Tol.</string>
     <string name="native_to_state">Native to State</string>
     <string name="name_run">Name Run</string>
     <string name="plant_type">Plant Type</string>
@@ -35,7 +35,7 @@
     <string name="enter_a_name">enter a name</string>
     <string name="enter_initials_ca">enter initials \'CA\'</string>
     <string name="plant_name">Plant Name</string>
-    <string name="enter_plant_name">.       Enter plant name</string>
+    <string name="enter_plant_name">Enter plant name</string>
     <string name="FR_description">First, name the run with something memorable. For example, "Living Room Corner". Then select the filters applicable for your run, and tap go!</string>
     <string name="indoors">Indoors</string>
     <string name="Search_description">Enter the parameters to search the PLANTS Database. To not consider a filter, leave it blank.</string>
@@ -49,6 +49,7 @@
     <string name="phList">PH:</string>
     <string name="lightList">Light:</string>
     <string name="view_all_res">View All Results</string>
+    <string name="bg">bg</string>
     <string-array name="seasonDrop">
         <item></item>
         <item>Spring</item>

@@ -12,9 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-
 import API.plantData;
 import API.resultsData;
 import API.runsData;
@@ -145,8 +142,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            myText1 = itemView.findViewById(R.id.myText1);
-            myText2 = itemView.findViewById(R.id.myText2);
+            myText1 = itemView.findViewById(R.id.plant_name_res);
+            myText2 = itemView.findViewById(R.id.state_data);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //myImage = itemView.findViewById(R.id.imageView);
             //myText1.setText();

@@ -26,7 +26,7 @@
                 app:srcCompat="@drawable/dandelion" />
 
             <TextView
-                android:id="@+id/myText1"
+                android:id="@+id/plant_name_res"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -38,13 +38,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/myText2"
+                android:id="@+id/state_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/myText1"
-                app:layout_constraintTop_toBottomOf="@+id/myText1" />
+                app:layout_constraintStart_toStartOf="@+id/plant_name_res"
+                app:layout_constraintTop_toBottomOf="@+id/plant_name_res" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

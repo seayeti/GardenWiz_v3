@@ -1,279 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PlantPage"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/PlantPage">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/myText0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:alpha="0.5"
+            android:contentDescription="@string/bg"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/leaf_bg"
+            tools:ignore="ImageContrastCheck" />
+
+        <TextView
+        android:id="@+id/plant_desc"
+        android:layout_width="242dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/white"
         android:text="Desc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.014"
+        app:layout_constraintStart_toEndOf="@+id/plant_pic"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/myText1"
-        android:layout_width="219dp"
-        android:layout_height="130dp"
+
+        <TextView
+        android:id="@+id/plant_name_res"
+        android:layout_width="242dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/tree_green"
         android:text="Plant Name~"
-        android:textColor="@color/black"
-        android:textSize="32dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/CustomTextTitle"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:fontFamily="sans-serif-condensed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/plant_pic"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
-    <TextView
-        android:id="@+id/myText300"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="30dp"
-        android:background="#38A120"
-        android:text="  Type "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText1" />
+        <TextView
+            android:id="@+id/plant_type_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="@string/plant_type"
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintBottom_toTopOf="@+id/bloomP_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plant_pic"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/myText301"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="7dp"
-        android:background="#38A120"
-        android:text="  Shade"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText300" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="75dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="14dp"
-        android:text="  Tolerance"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/myText301"
-        app:layout_constraintTop_toTopOf="@+id/myText301" />
+        <TextView
+            android:id="@+id/shadeTol_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="Shade Tol."
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plant_type_res" />
 
 
-    <TextView
-        android:id="@+id/myText302"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="4dp"
-        android:background="#38A120"
-        android:text="  Blood P "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText301" />
+        <TextView
+            android:id="@+id/plant_type_data"
+            android:layout_width="175dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/white"
+            android:text="Typedata"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/plant_type_res"
+            app:layout_constraintTop_toBottomOf="@+id/plant_pic" />
 
-    <TextView
-        android:id="@+id/myText303"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="7dp"
-        android:background="#38A120"
-        android:text="  Edible "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText302" />
+        <TextView
+            android:id="@+id/shade_data"
+            android:layout_width="175dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/white"
+            android:text="ShadeData"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/shadeTol_res"
+            app:layout_constraintTop_toBottomOf="@+id/plant_type_data" />
 
-    <TextView
-        android:id="@+id/myText304"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="7dp"
-        android:background="#38A120"
-        android:text="  Flower "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText" />
+        <TextView
+            android:id="@+id/bloomP_data"
+            android:layout_width="175dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/white"
+            android:text="BloomPData"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/bloomP_res"
+            app:layout_constraintTop_toBottomOf="@+id/shade_data" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="75dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="14dp"
-        android:text="  Color "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/myText304"
-        app:layout_constraintTop_toTopOf="@+id/myText304" />
+        <TextView
+            android:id="@+id/bloomP_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="Bloom Period"
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shadeTol_res" />
 
-    <TextView
-        android:id="@+id/myText"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="7dp"
-        android:background="#38A120"
-        android:text="  PH range "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText303" />
+        <TextView
+            android:id="@+id/flower_color_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="Flower Color"
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ph_res" />
 
+        <TextView
+            android:id="@+id/ph_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="PH range "
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edible_res" />
 
-    <TextView
-        android:id="@+id/myText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Typedata"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="@+id/myText300"
-        app:layout_constraintTop_toTopOf="@+id/myText300" />
+        <TextView
+            android:id="@+id/state_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="@string/state"
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flower_color_res" />
 
-    <TextView
-        android:id="@+id/myText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ShadeData"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="@+id/myText301"
-        app:layout_constraintTop_toTopOf="@+id/myText301" />
-
-    <TextView
-        android:id="@+id/myText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EdibleData"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="@+id/myText303"
-        app:layout_constraintTop_toTopOf="@+id/myText303" />
-
-    <TextView
-        android:id="@+id/myText6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BloomPData"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="@+id/myText302"
-        app:layout_constraintTop_toTopOf="@+id/myText302" />
-
-    <TextView
-        android:id="@+id/myText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="phMIN"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="@+id/myText"
-        app:layout_constraintTop_toTopOf="@+id/myText" />
-
-    <TextView
-        android:id="@+id/myText8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="phMAX"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toEndOf="@+id/myText7"
-        app:layout_constraintTop_toTopOf="@+id/myText" />
-
-
-    <TextView
-        android:id="@+id/myText9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="flowerColor data"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
-        app:layout_constraintStart_toStartOf="@+id/myText304"
-        app:layout_constraintTop_toTopOf="@+id/myText304" />
-
-    <TextView
-        android:id="@+id/myText305"
-        android:layout_width="367dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="7dp"
-        android:background="#38A120"
-        android:text="  State "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myText304" />
+        <TextView
+            android:id="@+id/edible_res"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/tree_green"
+            android:paddingLeft="5dp"
+            android:text="@string/edible"
+            android:textAllCaps="true"
+            android:textAppearance="@style/CustomTextTitle"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bloomP_res" />
 
     <ScrollView
         android:id="@+id/stateScroll"
-        android:layout_width="286dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="@+id/myText305"
-        app:layout_constraintStart_toStartOf="@+id/myText305"
-        app:layout_constraintTop_toTopOf="@+id/myText305"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="343dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/myText2"
-                android:layout_width="287dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="StateData"
-                android:textAlignment="viewStart"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="-1dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="34dp"
-        android:src="@drawable/dandelion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/plant_pic"
+            android:layout_width="125dp"
+            android:layout_height="128dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="28dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/dandelion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,ImageContrastCheck"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/state_data"
+            android:layout_width="176dp"
+            android:layout_height="171dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="StateData"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/state_res"
+            app:layout_constraintTop_toBottomOf="@+id/flower_color_data" />
+
+        <TextView
+            android:id="@+id/flower_color_data"
+            android:layout_width="175dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/white"
+            android:text="flowerColor data"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/flower_color_res"
+            app:layout_constraintTop_toBottomOf="@+id/ph_min_data" />
+
+        <TextView
+            android:id="@+id/edible_data"
+            android:layout_width="175dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/white"
+            android:text="EdibleData"
+            android:textAppearance="@style/CustomTextData"
+            app:fontFamily="sans-serif-condensed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/edible_res"
+            app:layout_constraintTop_toBottomOf="@+id/bloomP_data" />
+
+        <TextView
+        android:id="@+id/ph_max_data"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/white"
+        android:textAppearance="@style/CustomTextData"
+        app:fontFamily="sans-serif-condensed"
+        android:text="phMAX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ph_min_data"
+        app:layout_constraintTop_toBottomOf="@+id/edible_data" />
+
+    <TextView
+        android:id="@+id/ph_min_data"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:text="phMIN"
+        android:textAppearance="@style/CustomTextData"
+        app:fontFamily="sans-serif-condensed"
+        app:layout_constraintStart_toEndOf="@+id/ph_res"
+        app:layout_constraintTop_toBottomOf="@+id/edible_data" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
