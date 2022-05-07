@@ -11,28 +11,37 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
+            android:id="@+id/bg"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:adjustViewBounds="false"
             android:alpha="0.5"
+            android:contentDescription="@string/bg"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@color/gradient_green" />
+            app:srcCompat="@drawable/leaf_bg"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/weatherwiz"
-            android:layout_width="265dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="29dp"
+            android:layout_width="251dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:ems="10"
             android:text="@string/weather_wiz"
-            android:textColor="@color/black"
-            android:textSize="55sp"
+            android:textColor="#035405"
+            android:textSize="49dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.629" />
 
         <ImageView
             android:id="@+id/topPhoto"
@@ -44,7 +53,8 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weatherwiz"
-            app:srcCompat="@drawable/plant_image" />
+            app:srcCompat="@drawable/plant_image"
+            tools:ignore="ImageContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pi_go"
