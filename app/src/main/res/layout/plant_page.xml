@@ -55,7 +55,6 @@
         android:textAllCaps="true"
         android:textAppearance="@style/CustomTextTitle"
         android:textColor="@color/white"
-        android:textSize="34sp"
         app:fontFamily="sans-serif-condensed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.89"
