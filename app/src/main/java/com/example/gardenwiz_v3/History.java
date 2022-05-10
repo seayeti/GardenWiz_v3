@@ -44,7 +44,7 @@ public class History extends AppCompatActivity {
         list.enqueue(new Callback<List<runsData>>() {
             @Override
             public void onResponse(Call<List<runsData>> call, Response<List<runsData>> response3) {
-                System.out.println("dumb");
+                System.out.println("test");
                 String[] plantNames = new String[response3.body().size()];
                 String[] betyID = new String[response3.body().size()];
                 for (int i = 0; i < response3.body().size(); i++) {

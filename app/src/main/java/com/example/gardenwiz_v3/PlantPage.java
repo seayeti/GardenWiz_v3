@@ -86,7 +86,7 @@ public class PlantPage extends AppCompatActivity {
             plantName = getIntent().getStringExtra("dataName");
 
             // UNCHECK
-            desc = getIntent().getStringExtra("data2");
+//            desc = getIntent().getStringExtra("data2");
             System.out.println("test");
             Retrofit retrofit = RetrofitBuilder.getInstance();
             plantApi myPlantAPI = retrofit.create(plantApi.class);

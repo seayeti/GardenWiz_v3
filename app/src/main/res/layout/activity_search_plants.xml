@@ -21,8 +21,10 @@
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/leaf_bg"
             tools:ignore="ImageContrastCheck" />
 
@@ -260,7 +262,6 @@
             android:inputType="textPersonName"
             android:paddingLeft="5dp"
             android:textColorHint="#757575"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.285"
             app:layout_constraintStart_toEndOf="@+id/name_run"
@@ -278,7 +279,6 @@
             android:textAllCaps="true"
             android:textAppearance="@style/CustomTextTitle"
             android:textColor="@color/white"
-            android:textSize="20dp"
             app:fontFamily="sans-serif-condensed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_run" />
@@ -323,7 +323,6 @@
             android:textAllCaps="true"
             android:textAppearance="@style/CustomTextTitle"
             android:textColor="@color/white"
-            android:textSize="20dp"
             app:fontFamily="sans-serif-condensed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -331,6 +330,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/indoorSwitch"
             app:layout_constraintVertical_bias="0.165" />
+
 
         <TextView
             android:id="@+id/howTo"

@@ -82,6 +82,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/allRes"
+
             app:layout_constraintVertical_bias="0.161" />
 
         <Button
@@ -96,12 +97,12 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/quickRun"
             app:layout_constraintTop_toBottomOf="@+id/allRes"
-            app:layout_constraintVertical_bias="0.161" />
+            app:layout_constraintVertical_bias="0.141" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="345dp"
-            android:layout_height="379dp"
+            android:layout_width="339dp"
+            android:layout_height="391dp"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
