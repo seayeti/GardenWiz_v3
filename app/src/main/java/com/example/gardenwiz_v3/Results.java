@@ -95,9 +95,10 @@ public class Results extends Activity {
                             //System.out.println("------");
                             PlantImages plants;
                             if(response.body().getQuery().getPages().get(0).getMissing() == null) {
-                                System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
-                                images[finalI] = response.body().getQuery().getPages().get(0).getThumbnail().getSource();
-
+                                //System.out.println(response.body().getQuery().getPages().get(0).getThumbnail().getSource());
+                                if (response.body().getQuery().getPages().get(0).getThumbnail() != null) {
+                                    images[finalI] = response.body().getQuery().getPages().get(0).getThumbnail().getSource();
+                                }
                             }
                             if(finalI == response3.body().size()-1){
                                 //
