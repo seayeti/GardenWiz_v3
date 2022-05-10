@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class DisplayList extends AppCompatActivity {
     List<resultsData> results;
     private  String JWT = null;
     private  String gUserID = null;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -64,8 +66,8 @@ public class DisplayList extends AppCompatActivity {
             typeSpinner = "Graminoid";
         }
 
-        ListView mListView =(ListView) findViewById(R.id.mListView);
-
+        //ListView mListView =(ListView) findViewById(R.id.mListView);
+        recyclerView = findViewById(R.id.recyclerView2);
         plantList = new ArrayList<>();
 
         Retrofit retrofit = RetrofitBuilder.getInstance();
