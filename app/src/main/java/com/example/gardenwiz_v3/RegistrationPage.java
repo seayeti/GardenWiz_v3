@@ -46,37 +46,40 @@ public class RegistrationPage extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println();
+                System.out.println("test");
                 Retrofit retrofit = RetrofitBuilder.getInstance();
                 userApi myuserAPI = retrofit.create(userApi.class);
+
                 Call<login> emailCheck = myuserAPI.emailCheck(Name.getText().toString());
                 emailCheck.enqueue(new Callback<login>() {
                     @Override
                     public void onResponse(Call<login> call, Response<login> response) {
+                        System.out.println(response.body().getMessage());
                         if(response.body().getMessage().equals("No Users Found")){
                             Retrofit retrofit = RetrofitBuilder.getInstance();
                             userApi myuserAPI = retrofit.create(userApi.class);
                             Call<login> register = myuserAPI.register(Name.getText().toString(),Password.getText().toString());
                             register.enqueue(new Callback<login>() {
                                 @Override
-                                public void onResponse(Call<login> call, Response<login> response) {
-                                    validate(response.body().getMessage());
+                                public void onResponse(Call<login> call, Response<login> response2) {
+                                    System.out.println("work");
+                                    validate(response2.body().getMessage());
                                 }
 
                                 @Override
                                 public void onFailure(Call<login> call, Throwable t) {
-
+                                    System.out.println("fail");
                                 }
                             });
                         }else{
-
+                            System.out.println("faul");
                             alertText.setText("Username already exists, choose another");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<login> call, Throwable t) {
-
+                        System.out.println("check fail");
                     }
                 });
 

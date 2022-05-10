@@ -61,7 +61,8 @@ public class AdvQuery extends DialogFragment implements OnItemSelectedListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View v = (inflater.inflate(R.layout.advdialog, null));
-
+        JWT = getArguments().getString("JWT");
+        gUserID = getArguments().getString("userID");
 
         //set edit texts
         input_name = v.findViewById(R.id.name_input);
