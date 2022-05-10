@@ -317,7 +317,6 @@
             android:layout_width="80dp"
             android:layout_height="49dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_colors"
             android:text="@string/go"
@@ -330,12 +329,13 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/indoorSwitch"
-            app:layout_constraintVertical_bias="0.108" />
+            app:layout_constraintVertical_bias="0.165" />
+
 
         <TextView
             android:id="@+id/howTo"
-            android:layout_width="332dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:background="@color/gradient_green"
             android:paddingLeft="8dp"
@@ -347,15 +347,15 @@
             app:fontFamily="sans-serif-condensed"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchButton"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.152" />
 
         <TextView
             android:id="@+id/filter_run"
-            android:layout_width="197dp"
-            android:layout_height="42dp"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
