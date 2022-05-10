@@ -42,14 +42,14 @@
 
         <TextView
             android:id="@+id/gardenWiz"
-            android:layout_width="146dp"
-            android:layout_height="60dp"
+            android:layout_width="91dp"
+            android:layout_height="36dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:ems="10"
             android:text="@string/weatherwiz_status"
             android:textColor="#035405"
-            android:textSize="49dp"
+            android:textSize="30dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/etName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,8 @@
             app:layout_constraintEnd_toStartOf="@+id/advRun"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/allRes" />
+            app:layout_constraintTop_toBottomOf="@+id/allRes"
+            app:layout_constraintVertical_bias="0.161" />
 
         <Button
             android:id="@+id/advRun"
@@ -94,12 +95,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/quickRun"
-            app:layout_constraintTop_toBottomOf="@+id/allRes" />
+            app:layout_constraintTop_toBottomOf="@+id/allRes"
+            app:layout_constraintVertical_bias="0.161" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="345dp"
-            android:layout_height="478dp"
+            android:layout_height="379dp"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
@@ -149,10 +151,10 @@
                 android:id="@+id/durationList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/durationList"
-                android:background="@color/white"
                 android:textAllCaps="true"
                 android:textAppearance="@style/CustomTextData"
                 app:fontFamily="sans-serif-condensed" />
